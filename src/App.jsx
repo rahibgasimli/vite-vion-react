@@ -1,4 +1,3 @@
-import './App.css'
 import './assets/css/vendors/bootstrap.min.css';
 import './assets/css/style.css';
 import Footer from './components/Footer'

@@ -392,18 +392,18 @@
       fixedContentPos: false,
     });
   }
-  $(".block-price-item").on("click", function () {
-    $(".block-price-item").removeClass("active");
-    $(this).addClass("active");
-    var package = $(this).attr("data-package");
-    if (typeof package !== "undefined") {
-      var li = $(".list-package-feature li");
-      li.removeClass("active");
-      for (var i = 0; i < package; i++) {
-        li.eq(i).addClass("active");
-      }
-    }
-  });
+  // $(".block-price-item").on("click", function () {
+  //   $(".block-price-item").removeClass("active");
+  //   $(this).addClass("active");
+  //   var package = $(this).attr("data-package");
+  //   if (typeof package !== "undefined") {
+  //     var li = $(".list-package-feature li");
+  //     li.removeClass("active");
+  //     for (var i = 0; i < package; i++) {
+  //       li.eq(i).addClass("active");
+  //     }
+  //   }
+  // });
   // SLick
   $(".product-image-slider").slick({
     slidesToShow: 1,
