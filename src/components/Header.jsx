@@ -1,16 +1,62 @@
 // components/Header.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderLogo from "../assets/imgs/template/logo.svg";
 import { useStickyHeader } from '../hooks/useStickyHeader';
+import { fetchData } from '../assets/js/getData';
 
 const Header = () => {
   const isSticky = useStickyHeader();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [menuData, setMenuData] = useState([]);
+
+  useEffect(() => {
+    fetchData("en/navigation/main").then((data) => {
+      setMenuData(data);
+    });
+  }, []);
+
+  console.log(menuData)
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const renderSubMenu = (children) => {
+    if (!children || children.length === 0) return null;
+
+
+
+    return (
+      <ul className="sub-menu">
+        {children.map((child, index) => (
+          <React.Fragment key={child.slug}>
+            <li>
+              <Link className="closer" to={`/${child.slug}`}>
+                {child.title}
+              </Link>
+            </li>
+            {index < children.length - 1 && <li className="hr"><span></span></li>}
+          </React.Fragment>
+        ))}
+      </ul>
+    );
+  };
+
+  const renderMenuItems = () => {
+    return menuData.map((item) => (
+      <li 
+        key={item.slug} 
+        className={item.children && item.children.length > 0 ? 'has-children' : ''}
+      >
+        <Link to={`/${item.slug}`}>
+          {item.title}
+        </Link>
+        {item.children && item.children.length > 0 && renderSubMenu(item.children)}
+      </li>
+    ));
+  };
+
 
   return (
     <header className={`header sticky-bar ${isSticky ? 'stick' : ''}`}>
@@ -25,33 +71,7 @@ const Header = () => {
             <div className="header-nav">
               <nav className="nav-main-menu d-none d-xl-block">
                 <ul className="main-menu">
-                  <li className="has-children">
-                    <a href="#">Company</a>
-                    <ul className="sub-menu">
-                      <li>
-                        <Link className="closer" to="/about">
-                          <i className="fi fi-rr-gem"></i>About
-                        </Link>
-                      </li>
-                      <li className="hr"><span></span></li>
-                      <li>
-                        <Link className="closer" to="/team">
-                          <i className="fi fi-rr-database"></i>Team
-                        </Link>
-                      </li>
-                      <li className="hr"><span></span></li>
-                      <li>
-                        <Link className="closer" to="/career">
-                          <i className="fi fi-rr-headset"></i>Career
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><Link to="/services">Services</Link></li>
-                  <li><Link to="/industries">Industries</Link></li>
-                  <li><Link to="/ourwork">Our work</Link></li>
-                  <li><Link to="/news">Newsroom</Link></li>
-                  <li><Link to="/contacts">Contact</Link></li>
+                  {renderMenuItems()}
                 </ul>
               </nav>
               <div 
@@ -76,5 +96,6 @@ const Header = () => {
     </header>
   );
 };
+
 
 export default Header;
