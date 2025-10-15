@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderLogo from "../assets/imgs/template/logo.svg";
 import { useStickyHeader } from '../hooks/useStickyHeader';
-import { fetchData } from '../assets/js/getData';
+import { fetchData } from '../assets/utils/getData';
 
 const Header = () => {
   const isSticky = useStickyHeader();

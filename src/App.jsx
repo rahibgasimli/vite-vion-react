@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+// App.jsx
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useParams } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import '../src/assets/css/style.css'
+import { fetchPageData } from './assets/utils/getData';
+import './assets/css/style.css'
 
-// Komponentləri import edirik
 import ListSection from './components/modulesComponents/ListSection';
 import ModelsSection from './components/modulesComponents/ModelsSection';
 import BannerSection from './components/modulesComponents/BannerSection';
@@ -17,193 +18,108 @@ import PartnersSection from './components/modulesComponents/PartnersSection';
 import ServicesSection from './components/modulesComponents/ServicesSection';
 import SlidersSection from './components/modulesComponents/SlidersSection';
 import Testimonials from './components/modulesComponents/Testimonials';
-import { fetchData } from './assets/js/getData';
 
-// Səhifə komponenti
-const Page = ({ pageData }) => {
-  if (!pageData || !pageData.modules) return null;
+const PageRenderer = ({ pageData }) => {
+  if (!pageData?.modules) return null;
+
+  const moduleComponents = {
+    'List Section': ListSection,
+    'Models Section': ModelsSection,
+    'Banner Section': BannerSection,
+    'Cards Section': CardsSection,
+    'Counter Section': CounterSection,
+    'FAQ Section': FAQSection,
+    'Features Section': FeaturesSection,
+    'News Section': NewsSection,
+    'Partners Section': PartnersSection,
+    'Services Section': ServicesSection,
+    'Sliders Section': SlidersSection,
+    'Testimonials': Testimonials,
+  };
 
   return (
-    <div>
+    <>
       {pageData.modules.map((module, index) => {
-        // Module type-a görə uyğun komponenti seçirik
-        switch (module.module_type) {
-          case 'List Section':
-            return (
-              <ListSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'Models Section':
-            return (
-              <ModelsSection 
-                key={module.id || index}
-                data={module.data}
-                content={module.content}
-              />
-            );
-          
-          case 'Banner Section':
-            return (
-              <BannerSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'Cards Section':
-            return (
-              <CardsSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'Counter Section':
-            return (
-              <CounterSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'FAC Section':
-            return (
-              <FAQSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'Features Section':
-            return (
-              <FeaturesSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'News Section':
-            return (
-              <NewsSection 
-                key={module.id || index}
-                data={module.data || module.content}
-              />
-            );
-          
-          case 'Partners Section':
-            return (
-              <PartnersSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'Services Section':
-            return (
-              <ServicesSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'Sliders Section':
-            return (
-              <SlidersSection 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          case 'Testimonials':
-            return (
-              <Testimonials 
-                key={module.id || index}
-                data={module.content}
-              />
-            );
-          
-          default:
-            console.warn(`Naməlum modul tipi: ${module.module_type}`);
-            return null;
+        const Component = moduleComponents[module.module_type];
+        if (!Component) {
+          console.warn(`Naməlum modul: ${module.module_type}`);
+          return null;
         }
+
+        return (
+          <Component
+            key={module.id || index}
+            data={module.data}
+            content={module.content}
+            {...module}
+          />
+        );
       })}
-    </div>
+    </>
   );
 };
 
-// Dinamik səhifə route-u
 const DynamicPage = () => {
   const [pageData, setPageData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { slug } = useParams();
 
   useEffect(() => {
-    if (slug) {
-      // API-dən səhifə məlumatlarını alırıq
-      fetchData(`en/pages/${slug}`).then((data) => {
+    const loadPageData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await fetchPageData(slug);
         setPageData(data);
-      }).catch(error => {
-        console.error('Səhifə məlumatları alınarkən xəta:', error);
-      });
-    }
+      } catch (err) {
+        console.error('Səhifə məlumatları alınarkən xəta:', err);
+        setError('Səhifə tapılmadı');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPageData();
   }, [slug]);
 
-  if (!pageData) {
-    return <div>Yüklənir...</div>;
+  if (loading) {
+    return (
+      <div className="container text-center py-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Yüklənir...</span>
+        </div>
+        <p className="mt-2">Yüklənir...</p>
+      </div>
+    );
   }
 
-  return <Page pageData={pageData} />;
+  if (error) {
+    return (
+      <div className="container text-center py-5">
+        <h1>404 - Səhifə tapılmadı</h1>
+        <p>{error}</p>
+        <a href="/" className="btn btn-primary">Ana səhifəyə qayıt</a>
+      </div>
+    );
+  }
+
+  return <PageRenderer pageData={pageData} />;
 };
 
-// Əsas App komponenti
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <main>
-          <Routes>
-            {/* Ana səhifə */}
-            <Route path="/" element={<HomePage />} />
-            
-            {/* Dinamik səhifələr */}
-            <Route path="/:slug" element={<DynamicPage />} />
-            
-            {/* 404 səhifəsi */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  );
-}
-
-// Ana səhifə komponenti (nümunə)
-const HomePage = () => {
-  const [homeData, setHomeData] = useState(null);
-
-  useEffect(() => {
-    fetchData("en/pages/home").then((data) => {
-      setHomeData(data);
-    });
-  }, []);
-
-  if (!homeData) return <div>Yüklənir...</div>;
-
-  return <Page pageData={homeData} />;
-};
-
-// 404 səhifəsi
-const NotFound = () => {
-  return (
-    <div className="container text-center py-5">
-      <h1>404 - Səhifə tapılmadı</h1>
-      <p>Axtardığınız səhifə mövcud deyil.</p>
+    <div className="App">
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<DynamicPage />} />
+          <Route path="/:slug" element={<DynamicPage />} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
-};
+}
 
 export default App;
