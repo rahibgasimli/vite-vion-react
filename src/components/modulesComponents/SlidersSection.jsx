@@ -27,7 +27,7 @@ const SlidersSection = ({ content }) => {
                                 </div>
                             </div>
                             <div className="row mt-110">
-                                <div className="col-lg-7"><img src={slide.image} /></div>
+                                <div className="col-lg-7"><img src={`/storage/app/public${slide.image}`} /></div>
                                 <div className="col-lg-5"><img src={Banner2} /></div>
                             </div>
                         </div>
