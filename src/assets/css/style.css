@@ -469,6 +469,10 @@ a {
   letter-spacing: -1%;
 }
 
+.size-80{
+  font-size: 80px;
+}
+
 .text-display-2 {
   font-family: "Chivo", sans-serif;
   font-weight: bold;

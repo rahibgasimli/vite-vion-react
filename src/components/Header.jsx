@@ -12,11 +12,11 @@ const Header = () => {
 
   useEffect(() => {
     fetchData("en/navigation/main").then((data) => {
-      setMenuData(data);
+      setMenuData(data.navigation);
     });
   }, []);
 
-  console.log(menuData)
+  console.log(menuData.navigation)
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

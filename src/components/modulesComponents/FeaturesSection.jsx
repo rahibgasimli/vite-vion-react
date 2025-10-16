@@ -3,12 +3,13 @@ import React from 'react'
 const FeaturesSection = ({ content }) => {
 
   console.log(content)
+  console.log(`/storage/app/public/${content.features_image}`);
 
   return (
     <section className="section-box">
       <div className="container mt-120">
         <div className="row align-items-center">
-          <div className="col-lg-6 col-sm-12 block-img-we-do"><img className="img-responsive" src="assets/imgs/page/about/3/img-2.svg" alt="Vion" /></div>
+          <div className="col-lg-6 col-sm-12 block-img-we-do"><img className="img-responsive" src={`../storage/app/public/${content.features_image}`} alt="Vion" /></div>
           <div className="col-lg-6 col-sm-12 block-we-do">
             <h3 className="text-heading-1 mt-30">{content.features_title}</h3>
             <p className="text-body-lead-large color-gray-600 mt-30">{content.features_description}</p>

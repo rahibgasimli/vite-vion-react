@@ -22,6 +22,8 @@ import Testimonials from './components/modulesComponents/Testimonials';
 const PageRenderer = ({ pageData }) => {
   if (!pageData?.modules) return null;
 
+  console.log('Bütün modullar:', pageData.modules); 
+
   const moduleComponents = {
     'List Section': ListSection,
     'Models Section': ModelsSection,
@@ -33,13 +35,14 @@ const PageRenderer = ({ pageData }) => {
     'News Section': NewsSection,
     'Partners Section': PartnersSection,
     'Services Section': ServicesSection,
-    'Sliders Section': SlidersSection,
+    'Slider Section': SlidersSection,
     'Testimonials': Testimonials,
   };
 
   return (
     <>
       {pageData.modules.map((module, index) => {
+        console.log(`Modul ${index}:`, module.module_type, module.content); // Hər modul üçün
         const Component = moduleComponents[module.module_type];
         if (!Component) {
           console.warn(`Naməlum modul: ${module.module_type}`);

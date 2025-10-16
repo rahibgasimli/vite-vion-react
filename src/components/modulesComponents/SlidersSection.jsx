@@ -3,11 +3,11 @@ import React from 'react'
 import Banner1 from "../../assets/imgs/page/homepage7/banner-1.svg"
 import Banner2 from "../../assets/imgs/page/homepage7/banner-2.svg"
 
-const SlidersSection = ({ slidesData }) => {
+const SlidersSection = ({ content }) => {
 
-    console.log(slidesData)
+    console.log(content.slides)
 
-    if (!slidesData || slidesData.length === 0) {
+    if (!content.slides || content.slides === 0) {
         return null;
     }
 
@@ -15,7 +15,7 @@ const SlidersSection = ({ slidesData }) => {
         <section className="section-box">
             <div className="container">
                 {
-                    slidesData.map((slide, index) => (
+                    content.slides.map((slide, index) => (
                         <div key={index}>
                             <div className="row">
                                 <div className="col-lg-6 mt-30">

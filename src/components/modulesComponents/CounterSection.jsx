@@ -1,54 +1,68 @@
-// components/CounterSection.jsx
-import React from 'react';
-import { useCounterUp } from '../../hooks/useCounterUp'; // Named import
+import React, { useEffect, useState, useRef } from 'react';
 
-const CounterSection = ({countersData}) => {
-  const stats = [
-    {
-      value: 120,
-      suffix: "+",
-      title: "Completed projects",
-      description: "Delivered strategic and operational projects across diverse industries."
-    },
-    {
-      value: 15,
-      suffix: "+",
-      title: "Years of expertise",
-      description: "Our consultants bring extensive local and international experience."
-    },
-    {
-      value: 25,
-      suffix: "+",
-      title: "Skilled experts",
-      description: "Professionals specialized in strategy, finance, digital, and operations."
-    },
-    {
-      value: 20,
-      suffix: "+",
-      title: "Trusted clients",
-      description: "Organizations that partnered with VION for lasting impact."
+// Counter animasiyası üçün custom hook
+const useCounterAnimation = (targetValue, duration = 600, delay = 10) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
     }
-  ];
 
-  const CounterItem = ({ value, suffix, title, description }) => {
-    const { count, elementRef } = useCounterUp(value, {
-      delay: 10,
-      time: 600
-    });
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, []);
 
-    console.log(countersData)
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let start = 0;
+    const increment = targetValue / (duration / delay);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= targetValue) {
+        setCount(targetValue);
+        clearInterval(timer);
+      } else {
+        setCount(Math.ceil(start));
+      }
+    }, delay);
+
+    return () => clearInterval(timer);
+  }, [isVisible, targetValue, duration, delay]);
+
+  return { count, elementRef };
+};
+
+const CounterSection = ({ content }) => {
+  console.log(content);
+
+  // CounterItem komponenti
+  const CounterItem = ({ counter }) => {
+    const { count, elementRef } = useCounterAnimation(counter.counter_value, 600, 10);
 
     return (
       <div className="col-lg-3 col-md-3 col-sm-6 col-6 mb-30 text-center">
-        <span className="text-display-3 color-green-900">
-          <span ref={elementRef} className="count">
-            {count}
-          </span>
-          {suffix}
+        <span className="text-display-3 color-green-900" ref={elementRef}>
+          <span className="count">{count}</span>+
         </span>
-        <div className="text-body-quote">{title}</div>
+        <div className="text-body-quote">{counter.counter_title}</div>
         <p className="text-body-text color-gray-500 mt-10">
-          {description}
+          {counter.counter_description}
         </p>
       </div>
     );
@@ -62,20 +76,9 @@ const CounterSection = ({countersData}) => {
           <div className="col-lg-10">
             <div className="pb-20 text-mb-center">
               <div className="row">
-                {/* {countersData.map((counter, index) => (
-                  // <CounterItem
-                  //   key={index}
-                  //   value={counter.counter_value}
-                  //   suffix={stat.suffix}
-                  //   title={stat.title}
-                  //   description={stat.description}
-                  // />
-
-                  <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-30 text-center"><span class="text-display-3 color-green-900"><span class="count">{counter.counter_value}</span>+</span>
-                    <div class="text-body-quote">Completed projects</div>
-                    <p class="text-body-text color-gray-500 mt-10">Delivered strategic and operational projects across diverse industries.</p>
-                  </div>
-                ))} */}
+                {content.counters.map((counter, index) => (
+                  <CounterItem key={index} counter={counter} />
+                ))}
               </div>
             </div>
           </div>
