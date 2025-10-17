@@ -36,7 +36,7 @@ const PageRenderer = ({ pageData }) => {
     'Partners Section': PartnersSection,
     'Services Section': ServicesSection,
     'Slider Section': SlidersSection,
-    'Testimonials': Testimonials,
+    'Testimonials Section': Testimonials,
   };
 
   return (

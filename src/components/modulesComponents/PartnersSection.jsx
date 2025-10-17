@@ -17,7 +17,7 @@ const PartnersSection = ({ content, data }) => {
         <div class="row  justify-content-center">
           <div class="container-fluid row col-lg-10 col-sm-10 col-12">
             {data.map((partner, index) => (
-              <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center"><a class="item-logo box-hover-shadow hover-up" href={partner.website}><img alt={partner.name} src="assets/imgs/slider/logo/sample-logo-1.svg" /></a></div>
+              <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center"><a target='blank_' class="item-logo box-hover-shadow hover-up" href={partner.website}><img alt={partner.name} src={`https://vion.make.az/storage/${partner.logo}`} /></a></div>
             ))}
           </div>
 
