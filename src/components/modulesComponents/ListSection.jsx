@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ListSection = () => {
+const ListSection = ({ content }) => {
   return (
     <section className="section-box mt-100 mb-140">
     <div className="container">

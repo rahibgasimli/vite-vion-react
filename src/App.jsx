@@ -18,6 +18,11 @@ import PartnersSection from './components/modulesComponents/PartnersSection';
 import ServicesSection from './components/modulesComponents/ServicesSection';
 import SlidersSection from './components/modulesComponents/SlidersSection';
 import Testimonials from './components/modulesComponents/Testimonials';
+import FullWidthImageSection from './components/modulesComponents/FullWidthImageSection';
+import NewsletterSection from './components/modulesComponents/NewsletterSection';
+import PromotionSection from './components/modulesComponents/PromotionSection';
+import FullWidthMultipleImagesSection from './components/modulesComponents/FullWidthMultipleImagesSection';
+import ContactSection from './components/modulesComponents/ContactSection';
 
 const PageRenderer = ({ pageData }) => {
   if (!pageData?.modules) return null;
@@ -37,6 +42,12 @@ const PageRenderer = ({ pageData }) => {
     'Services Section': ServicesSection,
     'Slider Section': SlidersSection,
     'Testimonials Section': Testimonials,
+    "Models Section" : ModelsSection,
+    'Full-Width Image Section' : FullWidthImageSection,
+    "Newsletter" : NewsletterSection,
+    'Promotion' : PromotionSection,
+    'Full-Width Multiple Images Section' : FullWidthMultipleImagesSection,
+    'Contact' : ContactSection
   };
 
   return (
@@ -54,6 +65,8 @@ const PageRenderer = ({ pageData }) => {
             key={module.id || index}
             data={module.data}
             content={module.content}
+            pageTitle={pageData.title}
+            pageDescription={pageData.description}
             {...module}
           />
         );
