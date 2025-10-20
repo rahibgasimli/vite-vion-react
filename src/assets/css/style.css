@@ -1025,7 +1025,6 @@ h6 {
 .slide-container {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
   height: 400px;
 }
 
@@ -1035,7 +1034,6 @@ h6 {
   object-fit: cover;
   cursor: pointer;
   transition: all 0.6s ease-in-out;
-  border-radius: 10px;
 }
 
 /* Ana resim için animasyon */
@@ -3759,13 +3757,15 @@ label {
   align-items: center;
   justify-content: space-between;
 }
-.header .main-header .header-left {
+.header .main-header .header-left { 
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
   width: 100%;
 }
 .header .main-header .header-left .header-logo {
   margin-right: 50px;
+  width: 162px;
 }
 .header .main-header .header-left .header-nav {
   display: inline-block;
@@ -3815,7 +3815,7 @@ label {
   display: block;
   margin: 5px 0;
 }
-.header .main-menu li a {
+.header .main-menu li .menu-item {
   font-family: "Chivo", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -4092,6 +4092,16 @@ label {
   background-repeat: no-repeat;
   background-position: center right 25px;
   padding-right: 56px;
+}
+
+.social_icon_path {
+  fill: #98A2B3;
+  transition: fill 0.3s ease;
+}
+
+.social_icon:hover .social_icon_path {
+  fill: #441A7C;
+  transition: fill 0.3s ease;
 }
 
 .mobile-header-wrapper-style {
@@ -4560,6 +4570,12 @@ label {
   margin-bottom: 40px;
   border-bottom: 1px solid #E4E7EC;
 }
+
+.footer .footer-top .footer-logo {
+  width: 162px;
+  margin-right: 50px;
+}
+
 .footer .menu-footer {
   display: inline-block;
 }
@@ -6493,6 +6509,17 @@ label {
   top: 0px;
   left: 0px;
   width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #E4E7EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-icons .item-icon .icon-left .icon-main {
+  font-size: 32px;
+  color: #9355F7;
 }
 
 .box-square {
@@ -7258,6 +7285,9 @@ label {
 
 .social-bottom {
   padding-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 .social-bottom a {
   text-decoration: none;
@@ -8810,6 +8840,15 @@ input.qty-val {
   z-index: 99;
 }
 
+.footer .footer-social {
+    margin-top: 15px;
+    margin-left: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 20px;
+  }
+
 @media only screen and (max-width: 1368px) {
   .slider-nav-thumbnails {
     width: 135px;
@@ -9477,6 +9516,9 @@ input.qty-val {
   .footer .footer-social {
     margin-top: 15px;
     margin-left: -10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
   .nav-right li {
     margin-bottom: 15px;

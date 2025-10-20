@@ -10,7 +10,7 @@ const FullWidthImageSection = ({ content }) => {
         <div className="col-lg-5 col-sm-12 col-12 ">
             {content.fwi_title ? <h2 className="text-heading-1 mb-30 mt-20">{content.fwi_title}</h2> : null}
             {content.fwi_description ? <p className="text-body-normal">{content.fwi_description}</p> : null}
-            {content.fwi_button_text ? <div className="mt-30"><Link className="btn btn-black text-body-capitalized icon-arrow-right-white" to={content.fwi_button_url}>{content.fwi_button_text}</Link></div> : null}
+            {content.fwi_button_text ? <div className="mt-30"><a className="btn btn-black text-body-capitalized icon-arrow-right-white" href={`mailto:${content.fwi_button_url}`}>{content.fwi_button_text}</a></div> : null}
           
         </div>
         <div className="col-lg-6 col-sm-12 col-12 block-gallery-1">

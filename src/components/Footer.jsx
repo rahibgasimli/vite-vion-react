@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import FooterLogo from "../assets/imgs/template/logo.svg"
-import { fetchData } from '../assets/utils/getData';
-import makeLogo from "../assets/imgs/page/homepage2/make-logo.svg"
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import FooterLogo from "../assets/imgs/template/logo.svg";
+import { fetchData } from "../assets/utils/getData";
+import makeLogo from "../assets/imgs/page/homepage2/make-logo.svg";
+import { Link } from "react-router-dom";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+} from "./icons";
 
 const Footer = () => {
   const [menuData, setMenuData] = useState([]);
@@ -13,6 +19,7 @@ const Footer = () => {
       if (data) {
         setMenuData(data.navigation || []);
         setFooterInfo(data.footer_info || {});
+        console.log("footer data: ", data);
       }
     });
   }, []);
@@ -31,7 +38,10 @@ const Footer = () => {
           <ul className="menu-footer mt-20">
             {firstPart.map((item) => (
               <li key={item.slug}>
-                <Link className="color-gray-900" to={`${basePath}/${item.slug}`}>
+                <Link
+                  className="color-gray-900"
+                  to={`${basePath}/${item.slug}`}
+                >
                   {item.title}
                 </Link>
               </li>
@@ -44,7 +54,10 @@ const Footer = () => {
           <ul className="menu-footer mt-20">
             {secondPart.map((item) => (
               <li key={item.slug}>
-                <Link className="color-gray-900" to={`${basePath}/${item.slug}`}>
+                <Link
+                  className="color-gray-900"
+                  to={`${basePath}/${item.slug}`}
+                >
                   {item.title}
                 </Link>
               </li>
@@ -61,23 +74,49 @@ const Footer = () => {
         {/* --- TOP SECTION --- */}
         <div className="footer-top">
           <div className="row align-items-center">
-            <div className="col-md-4 col-sm-6 text-center text-md-start">
-              <a href="/">
+            <div className="footer-logo">
+              <Link className="d-flex" href="/">
                 <img alt="Vion" src={FooterLogo} />
-              </a>
+              </Link>
             </div>
-
             {/* --- SOCIAL ICONS --- */}
-            <div className="col-md-8 col-sm-6 text-center text-md-end color-green-900"> <div className="footer-social"> <a className="icon-socials icon-facebook" href={footerInfo.facebook_url} target="_blank"></a> <a className="icon-socials icon-instagram" href={footerInfo.instagram_url} target="_blank"></a> <a className="icon-socials icon-linkedin" href={footerInfo.linkedin_url} target="_blank"></a> <a className="icon-socials icon-twitter" href={footerInfo.youtube_url} target="_blank"></a> </div> </div> </div> </div>
+            <div className="col-md-8 col-sm-6 text-center text-md-end color-green-900">
+              {" "}
+              <div className="footer-social">
+                {" "}
+                <a href={footerInfo.facebook_url} target="_blank">
+                  <FacebookIcon />
+                </a>{" "}
+                <a href={footerInfo.instagram_url} target="_blank">
+                  <InstagramIcon />
+                </a>{" "}
+                <a href={footerInfo.linkedin_url} target="_blank">
+                  <LinkedinIcon />
+                </a>{" "}
+                <a href={footerInfo.youtube_url} target="_blank">
+                  <YoutubeIcon />
+                </a>{" "}
+              </div>{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>
 
         {/* --- MENU SECTIONS --- */}
         <div className="row">
           {menuData.map((section, index) => {
             if (section.title === "Company") {
-              return <React.Fragment key={index}>{renderSplitSection(section, 4)}</React.Fragment>;
+              return (
+                <React.Fragment key={index}>
+                  {renderSplitSection(section, 4)}
+                </React.Fragment>
+              );
             }
             if (section.title === "Services") {
-              return <React.Fragment key={index}>{renderSplitSection(section, 3)}</React.Fragment>;
+              return (
+                <React.Fragment key={index}>
+                  {renderSplitSection(section, 3)}
+                </React.Fragment>
+              );
             }
             return (
               <div className="col-lg-3 width-20 mb-30" key={index}>
@@ -87,7 +126,11 @@ const Footer = () => {
                     <li key={item.slug}>
                       <Link
                         className="color-gray-900"
-                        to={section.title === "Services" ? `/services/${item.slug}` : `/${item.slug}`}
+                        to={
+                          section.title === "Services"
+                            ? `/services/${item.slug}`
+                            : `/${item.slug}`
+                        }
                       >
                         {item.title}
                       </Link>
@@ -105,7 +148,7 @@ const Footer = () => {
               {footerInfo.address && (
                 <li>
                   <a
-                    href={`https://maps.google.com/?q=${footerInfo.address}`}
+                    href={footerInfo.address_link}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -136,17 +179,21 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-md-6">
               <span className="color-gray-400 text-body-lead">
-                &copy; VION {new Date().getFullYear()}. All rights reserved.
+                &copy; VION {new Date().getFullYear()}. {footerInfo.copyright}
               </span>
             </div>
-            <div className="col-md-6 text-center text-lg-end text-md-end">
+            <Link
+              to="https://make.az/"
+              target="_blank"
+              className="col-md-6 text-center text-lg-end text-md-end"
+            >
               <img src={makeLogo} alt="Make" />
-            </div>
+            </Link>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

@@ -57,7 +57,7 @@ const SlidersSection = ({ content }) => {
                             <div className={`slide-container ${isAnimating ? 'animating' : ''}`}>
                                 <img 
                                     src={`https://vion.make.az/storage/${currentSlide.image}`}
-                                    onClick={() => handleBannerClick(1)}
+                                    
                                     className="slide-image main-image"
                                     alt="Banner 1"
                                 />
@@ -67,7 +67,6 @@ const SlidersSection = ({ content }) => {
                             <div className={`slide-container ${isAnimating ? 'animating' : ''}`}>
                                 <img 
                                     src={`https://vion.make.az/storage/${nextSlide.slide_image}`}
-                                    onClick={() => handleBannerClick(2)}
                                     className="slide-image side-image"
                                     alt="Banner 2"
                                 />
