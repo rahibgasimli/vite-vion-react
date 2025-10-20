@@ -1,10 +1,11 @@
 // components/MobileHeader.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const MobileHeader = ({ isOpen, onClose, menuData }) => {
   console.log("MobileHeader render olunur:", { isOpen, menuData });
 
+  
   const renderSubMenu = (children) => {
     if (!children || children.length === 0) return null;
 
@@ -49,7 +50,7 @@ const MobileHeader = ({ isOpen, onClose, menuData }) => {
   }
 
   return (
-    <div className="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+    <div className={`mobile-header-wrapper-style perfect-scrollbar ${isOpen ? 'sidebar-visible' : ''}`}>
       <div className="mobile-header-wrapper-inner">
         <div className="mobile-header-content-area">
           <div className="perfect-scroll">       

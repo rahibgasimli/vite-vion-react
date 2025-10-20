@@ -288,9 +288,6 @@ li.hr span {
   gap: 150px;
 }
 
-.gap-90{
-  gap: 90px;
-}
 
 .position-relative {
   position: relative;
@@ -4149,6 +4146,8 @@ label {
   align-self: center;
   border-bottom: thin solid #F2F4F7;
 }
+
+
 .mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-top .mobile-header-logo a {
   display: block;
 }

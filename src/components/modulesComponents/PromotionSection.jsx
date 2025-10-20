@@ -1,19 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const PromotionSection = () => {
+const PromotionSection = ({ content }) => {
   return (
 
-    <section class="section-box">
-    <div class="container mt-90">
-      <div class="row align-items-center">
-        <div class="col-lg-5 col-sm-12 block-img-we-do">
-          <div class="inner-image"><img class="bdrd-16 img-responsive" src="assets/imgs/page/homepage2/img-2.png" alt="Agon"/></div>
+    <section className="section-box">
+    <div className="container mt-90">
+      <div className="row align-items-center">
+        <div className="col-lg-5 col-sm-12 block-img-we-do">
+          <div className="inner-image"><img className="img-responsive" src={`https://vion.make.az/storage/${content?.promotion_image}`} alt="Vion"/></div>
         </div>
-        <div class="col-lg-7 col-sm-12 block-we-do-2">
-          <h3 class="text-heading-1 mt-30">Let’s create your success story together</h3>
-          <p class="text-body-lead-large color-gray-600 mt-60">Every project is more than a case study — it is a partnership built on trust, insight, and measurable results.
-            If you are ready to explore new opportunities, expand into new markets, or transform your organization, our consultants are here to help.</p>
-            <div class="mt-60"><a class="btn btn-black shape-round icon-arrow-right-white" href="#">Discuss Your Project</a></div>
+        <div className="col-lg-7 col-sm-12 block-we-do-2">
+          <h3 className="text-heading-1 mt-30">{content?.promotion_title}</h3>
+          <p className="text-body-lead-large color-gray-600 mt-60">{content?.promotion_description}</p>
+            <div className="mt-60"><Link className="btn btn-black shape-round icon-arrow-right-white" to={content?.promotion_button_url}>{content?.promotion_button_text}</Link></div>
         </div>
       </div>
     </div>
