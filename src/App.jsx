@@ -27,6 +27,8 @@ import FullWidthMultipleImagesSection from "./components/modulesComponents/FullW
 import ContactSection from "./components/modulesComponents/ContactSection";
 import FullWidthSection from "./components/modulesComponents/FullWidthSection";
 import TextSection from "./components/modulesComponents/TextSection";
+import FeedbackSection from "./components/modulesComponents/FeedbackSection";
+import ImageSection from "./components/modulesComponents/ImageSection";
 
 // DYNAMIC PAGE KOMPONENTİ - BU ƏSAS SƏHİFƏ KOMPONENTİDİR
 const DynamicPage = () => {
@@ -92,6 +94,9 @@ const DynamicPage = () => {
 const PageRenderer = ({ pageData }) => {
   if (!pageData?.modules) return null;
 
+  // Əgər main_image və cover_image null olarsa VƏ about səhifəsi deyilsə, breadcrumb banner göstər
+  const showBreadcrumbBanner = !pageData.main_image && !pageData.cover_image && pageData.slug !== "about";
+
   const moduleComponents = {
     "List Section": ListSection,
     "Models Section": ModelsSection,
@@ -110,10 +115,28 @@ const PageRenderer = ({ pageData }) => {
     Promotion: PromotionSection,
     "Full-Width Multiple Images Section": FullWidthMultipleImagesSection,
     Contact: ContactSection,
+    'Image' : ImageSection
   };
 
   return (
     <>
+      {/* BREADCRUMB BANNER - main_image və cover_image null olduqda VƏ about səhifəsi deyilsə */}
+      {showBreadcrumbBanner && (
+        <section className="section-box">
+          <div className="banner-hero banner-breadcrums bg-5">
+            <div className="container text-center">
+              <h1 className="text-heading-2 color-gray-1000 mb-20">
+                {pageData.title}
+              </h1>
+              <p className="text-body-text color-gray-500">
+                {pageData.description}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* MODULLAR */}
       {pageData.modules.map((module, index) => {
         const Component = moduleComponents[module.module_type];
         if (!Component) {
@@ -195,24 +218,24 @@ const DetailRenderer = ({ detailData, type }) => {
   }
 
   // Banner üçün məlumatları çıxarın
-  const { title, image, description, published_at, date } = detailData;
+  const { title, image, banner_image, main_image, description, published_at, date } = detailData;
+  const bannerImage = banner_image || image;
 
   return (
     <>
-      {/* BANNER - BÜTÜN DETAIL SƏHİFƏLƏRİ ÜÇÜN */}
+      {/* BANNER */}
       {title && (
         <section className="section-box">
           <div
             className="banner-hero banner-head-image"
             style={{
-              background: image
-                ? `url(https://vion.make.az/storage/${image})`
+              background: bannerImage
+                ? `url(https://vion.make.az/storage/${bannerImage})`
                 : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
             }}
           >
             <div className="container">
               <div className="text-center">
-                {/* Tarix */}
                 {(published_at || date) && (
                   <span className="tag-1 bg-6 color-green-900">
                     {new Date(published_at || date).toLocaleDateString("en-GB")}
@@ -234,7 +257,10 @@ const DetailRenderer = ({ detailData, type }) => {
 
       {/* DİGƏR MODULLAR */}
       {detailData.modules.map((module, index) => {
+        console.log("🔄 Rendering module:", module.module_type, module);
+
         const moduleComponents = {
+          // ƏSAS MODULLAR
           "List Section": ListSection,
           "Models Section": ModelsSection,
           "Cards Section": CardsSection,
@@ -245,19 +271,24 @@ const DetailRenderer = ({ detailData, type }) => {
           "Partners Section": PartnersSection,
           "Services Section": ServicesSection,
           "Slider Section": SlidersSection,
-          "Testimonials Section": Testimonials,
           "Full-Width Image Section": FullWidthImageSection,
           Newsletter: NewsletterSection,
           Promotion: PromotionSection,
           "Full-Width Multiple Images Section": FullWidthMultipleImagesSection,
           Contact: ContactSection,
           "Full-Width Text Section": FullWidthSection,
+          
+          // PORTFOLIO DETAIL XÜSUSİ MODULLARI
           Text: TextSection,
+          Image: ImageSection, // ✅ Image modulu üçün yeni komponent
+          Feedback: FeedbackSection,
+          Button: PromotionSection,
         };
 
         const Component = moduleComponents[module.module_type];
+        
         if (!Component) {
-          console.warn(`Naməlum modul: ${module.module_type}`);
+          console.warn(`❌ Naməlum modul: ${module.module_type}`);
           return null;
         }
 
@@ -268,6 +299,7 @@ const DetailRenderer = ({ detailData, type }) => {
             content={module.content}
             pageTitle={detailData.title}
             pageDescription={detailData.description}
+            module_type={module.module_type}
             {...module}
           />
         );
@@ -294,7 +326,7 @@ function App() {
           />
           <Route
             path="/projects/:slug"
-            element={<DetailPage type="project" />}
+            element={<DetailPage type="projects" />}
           />
           <Route path="/blogs/:slug" element={<DetailPage type="blogs" />} />
           <Route
