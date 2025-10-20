@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 
 const SlidersSection = ({ content }) => {
@@ -45,9 +46,9 @@ const SlidersSection = ({ content }) => {
                         <div className="col-lg-5 offset-xl-1 mt-30">
                             <p className="text-body-lead-large color-gray-500">{currentSlide.description}</p>
                             <div className="mt-40">
-                                <a className="btn btn-black shape-round icon-arrow-right-white" href="#">
+                                <Link className="btn btn-black shape-round icon-arrow-right-white" to={currentSlide.button_url}>
                                     {currentSlide.button_text}
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -72,7 +72,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           <div className="product-image crop-box">
             <img
               className="img-responsive"
-              src={`https://vion.make.az/storage/${portfolio.image}`}
+              src={`https://vion.make.az/storage/${portfolio.main_image}`}
               alt={portfolio.title}
             />
           </div>
