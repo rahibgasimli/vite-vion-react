@@ -1,21 +1,27 @@
 // components/MobileHeader.jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MobileHeader = ({ isOpen, onClose, menuData }) => {
   console.log("MobileHeader render olunur:", { isOpen, menuData });
 
-  
+  const handleLinkClick = () => {
+    // səhifəni yuxarıya çək
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // menyunu bağla
+    onClose();
+  };
+
   const renderSubMenu = (children) => {
     if (!children || children.length === 0) return null;
 
     return (
       <ul className="sub-menu">
-        {children.map((child, index) => (
+        {children.map((child) => (
           <li key={child.slug}>
-            <Link 
-              to={`/${child.slug}`} 
-              onClick={onClose}
+            <Link
+              to={`/${child.slug}`}
+              onClick={handleLinkClick}
               className="closer"
             >
               {child.title}
@@ -32,11 +38,11 @@ const MobileHeader = ({ isOpen, onClose, menuData }) => {
     }
 
     return menuData.map((item) => (
-      <li 
-        key={item.slug} 
+      <li
+        key={item.slug}
         className={item.children && item.children.length > 0 ? 'has-children' : ''}
       >
-        <Link to={`/${item.slug}`} onClick={onClose}>
+        <Link to={`/${item.slug}`} onClick={handleLinkClick}>
           {item.title}
         </Link>
         {item.children && item.children.length > 0 && renderSubMenu(item.children)}
@@ -44,24 +50,22 @@ const MobileHeader = ({ isOpen, onClose, menuData }) => {
     ));
   };
 
-  // Əgər açıq deyilsə, heç nə göstərmə
-  if (!isOpen) {
-    return null;
-  }
+  // Əgər menyu bağlıdırsa, heç nə göstərmə
+  if (!isOpen) return null;
 
   return (
-    <div className={`mobile-header-wrapper-style perfect-scrollbar ${isOpen ? 'sidebar-visible' : ''}`}>
+    <div
+      className={`mobile-header-wrapper-style perfect-scrollbar ${isOpen ? 'sidebar-visible' : ''}`}
+    >
       <div className="mobile-header-wrapper-inner">
         <div className="mobile-header-content-area">
-          <div className="perfect-scroll">       
+          <div className="perfect-scroll">
             <div className="mobile-menu-wrap mobile-header-border">
-              {/* mobil menyu başlayır */}
               <nav>
                 <ul className="mobile-menu font-heading">
                   {renderMenuItems()}
                 </ul>
               </nav>
-              {/* mobil menyu bitir */}
             </div>
           </div>
         </div>

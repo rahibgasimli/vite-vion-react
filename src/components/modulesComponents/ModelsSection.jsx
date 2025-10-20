@@ -1,15 +1,48 @@
 import { Link } from "react-router-dom";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "../icons";
+import FullWidthMultipleImagesSection from "./FullWidthMultipleImagesSection"; // Bu importu əlavə edin
 
 const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
   const { model_type, has_anchor_group } = content;
+
+  // Industry model_type üçün render funksiyası
+  const renderIndustryContent = () => {
+    if (model_type !== "Industry") return null;
+
+    const industryItems = [];
+    
+    data.forEach((item, index) => {
+      // Əgər bu bir injected moduldursa
+      if (item.injected_module) {
+        industryItems.push(
+          <FullWidthMultipleImagesSection
+            key={`injected-${index}`}
+            content={item.content}
+            data={item.data}
+          />
+        );
+      } else {
+        // Normal industry item
+        industryItems.push(
+          <IndustryItem
+            key={item.id || index}
+            industry={item}
+            hasAnchor={has_anchor_group}
+            index={index}
+          />
+        );
+      }
+    });
+
+    return <div className="industry-list">{industryItems}</div>;
+  };
 
   const TeamMember = ({ member }) => (
     <div className="col-lg-3 col-md-6 col-sm-6">
       <div className="card-grid-style-5 hover-up">
         <div className="grid-5-img mb-15">  
           <img
-            src={`https://agon-nextjs.vercel.app/assets/imgs/page/about/1/team-2.png`}
+            src={`https://vion.make.az/storage/${member.image}`}
             className="object-fit-cover"
             alt={member.name}
           />
@@ -56,7 +89,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
     const isEven = index % 2 === 0;
 
     return (
-      <div className="container mt-90">
+      <div className="container mt-90" key={industry.id || index}>
         <div
           className="row align-items-center"
           id={hasAnchor ? industry.slug : undefined}
@@ -109,7 +142,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
         className="product-item-2 product-item-3 wow animate__animated animate__fadeIn"
         data-wow-delay=".1s"
       >
-        <Link to={portfolio?.slug}>
+        <Link to={`/projects/${portfolio.slug}`}>
           <div className="product-image crop-box">
             <img
               className="img-responsive"
@@ -119,7 +152,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           </div>
         </Link>
         <div className="product-info">
-          <Link to={portfolio?.slug}>
+          <Link to={`/projects/${portfolio.slug}`}>
             <h3 className="text-body-lead color-gray-900">{portfolio.title}</h3>
           </Link>
           <div className="d-flex mt-20">
@@ -129,7 +162,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           </div>
           <div className="d-flex mt-30">
             <div className="button-add text-md-start">
-              <Link className="btn btn-explorer" to={portfolio?.slug}>
+              <Link className="btn btn-explorer" to={`/projects/${portfolio.slug}`}>
                 Explore
               </Link>
             </div>
@@ -164,20 +197,6 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
       case "Team":
         return (
           <div>
-            {/* BANNER HERO - FULL WIDTH */}
-            <section className="section-box">
-              <div className="banner-hero banner-breadcrums bg-5">
-                <div className="container text-center">
-                  <h1 className="text-heading-2 color-gray-1000 mb-20">
-                    {pageTitle}
-                  </h1>
-                  <p className="text-body-text color-gray-500">
-                    {pageDescription}
-                  </p>
-                </div>
-              </div>
-            </section>
-
             {/* TEAM CARDS - NORMAL CONTAINER */}
             <section className="section-box">
               <div className="container mt-150"></div>
@@ -200,49 +219,36 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           // Portfolio layout istifadə et
           return (
             <div>
-              <section className="section-box">
-                <div className="banner-hero banner-breadcrums bg-5">
-                  <div className="container text-center">
-                    <h1 className="text-heading-2 color-gray-1000 mb-20">
-                      {pageTitle}
-                    </h1>
-                    <p className="text-body-text color-gray-500">
-                      {pageDescription}
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <div class="section-box mt-150">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+              <div className="section-box mt-150">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                       <div
-                        class="product-item-2 product-item-3 wow animate__animated animate__fadeIn"
+                        className="product-item-2 product-item-3 wow animate__animated animate__fadeIn"
                         data-wow-delay=".1s"
                       >
                         <a href="#">
-                          <div class="product-image crop-box">
+                          <div className="product-image crop-box">
                             <img
-                              class="img-responsive"
+                              className="img-responsive"
                               src="assets/imgs/page/homepage8/img-3.svg"
                             />
                           </div>
                         </a>
-                        <div class="product-info">
+                        <div className="product-info">
                           <a href="#">
-                            <h3 class="text-body-lead color-gray-900"></h3>
+                            <h3 className="text-body-lead color-gray-900"></h3>
                           </a>
-                          <div class="d-flex mt-20">
-                            <div class="box-prices">
-                              <span class="location-icon">
+                          <div className="d-flex mt-20">
+                            <div className="box-prices">
+                              <span className="location-icon">
                                 Baku, Azerbaijan
                               </span>
                             </div>
                           </div>
-                          <div class="d-flex mt-30">
-                            <div class="button-add text-md-start">
-                              <a class="btn btn-explorer" href="#">
+                          <div className="d-flex mt-30">
+                            <div className="button-add text-md-start">
+                              <a className="btn btn-explorer" href="#">
                                 Explore
                               </a>
                             </div>
@@ -261,19 +267,6 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           return (
             <div>
               <section className="section-box">
-                <div className="banner-hero banner-breadcrums bg-5">
-                  <div className="container text-center">
-                    <h1 className="text-heading-2 color-gray-1000 mb-20">
-                      {pageTitle}
-                    </h1>
-                    <p className="text-body-text color-gray-500">
-                      {pageDescription}
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section className="section-box">
                 <div className="container mt-90">
                   <div className="row">
                     {data.map((news, index) => (
@@ -286,33 +279,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           );
 
       case "Industry":
-        return (
-          <div>
-            <section className="section-box">
-              <div className="banner-hero banner-breadcrums bg-8">
-                <div className="container text-center">
-                  <h1 className="text-heading-2 color-gray-1000 mb-20">
-                    {pageTitle}
-                  </h1>
-                  <p className="text-body-text color-gray-500">
-                    {pageDescription}
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <div className="industry-list">
-              {data.map((industry, index) => (
-                <IndustryItem
-                  key={industry.id || index}
-                  industry={industry}
-                  hasAnchor={has_anchor_group}
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
-        );
+        return renderIndustryContent();
 
       case "Service":
         return (
@@ -329,9 +296,9 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
                 </div>
               </div>
             </section>
-            <div class="section-box mt-100">
-              <div class="container list-category-homepage7 mt-70">
-                <div class="row">
+            <div className="section-box mt-100">
+              <div className="container list-category-homepage7 mt-70">
+                <div className="row">
                   {data.map((service, index) => (
                     <ServiceItem service={service} index={index} />
                   ))}
@@ -344,20 +311,6 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
       case "Project":
         return (
           <div>
-            {/* BANNER SECTION */}
-            <section className="section-box">
-              <div className="banner-hero banner-breadcrums bg-8">
-                <div className="container text-center">
-                  <h1 className="text-heading-2 color-gray-1000 mb-20">
-                    {pageTitle}
-                  </h1>
-                  <p className="text-body-text color-gray-500">
-                    {pageDescription}
-                  </p>
-                </div>
-              </div>
-            </section>
-
             {/* PORTFOLIO ITEMS SECTION */}
             <div className="section-box mt-150">
               <div className="container">
