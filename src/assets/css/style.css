@@ -3757,15 +3757,13 @@ label {
   align-items: center;
   justify-content: space-between;
 }
-.header .main-header .header-left { 
+.header .main-header .header-left {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   width: 100%;
 }
 .header .main-header .header-left .header-logo {
-  width: 138px;
-  min-width: 138px;
+  margin-right: 50px;
 }
 .header .main-header .header-left .header-nav {
   display: inline-block;
@@ -3815,7 +3813,7 @@ label {
   display: block;
   margin: 5px 0;
 }
-.header .main-menu li .menu-item {
+.header .main-menu li a {
   font-family: "Chivo", sans-serif;
   font-style: normal;
   font-weight: 400;

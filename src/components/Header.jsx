@@ -1,4 +1,3 @@
-// components/Header.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import HeaderLogo from "../assets/imgs/template/logo.svg";
@@ -42,11 +41,9 @@ const Header = () => {
         {children.map((child, index) => (
           <React.Fragment key={child.slug}>
             <li>
-              {child.type !== "none" ? (
-                <Link className="closer" to={`/${child.slug}`}>{child.title}</Link>
-              ) : (
-                <span className="closer">{child.title}</span>
-              )}
+              <Link className='closer' to={`/${child.slug}`}>
+                {child.title}
+              </Link>
             </li>
             {index < children.length - 1 && (
               <li className="hr">
@@ -67,11 +64,7 @@ const Header = () => {
           item.children && item.children.length > 0 ? "has-children" : ""
         }
       >
-        {item.type !== "none" ? (
-          <Link to={`/${item.slug}`} className="menu-item">{item.title}</Link>
-        ) : (
-          <span className="menu-item">{item.title}</span>
-        )}
+        <Link to={`/${item.slug}`} className={`${item.type === "none" ? 'pe-none' : ''}`}>{item.title}</Link>
         {item.children &&
           item.children.length > 0 &&
           renderSubMenu(item.children)}
@@ -106,13 +99,16 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="header-right">
+            <div className="header-right">
               <div className="block-signin">
-                <a className="btn btn-default hover-up icon-arrow-right" href="page-signup.html">
+                <a
+                  className="btn btn-default hover-up icon-arrow-right"
+                  href="page-signup.html"
+                >
                   Get in Touch
                 </a>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </header>
