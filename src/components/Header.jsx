@@ -99,7 +99,7 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="header-right">
+            {/* <div className="header-right">
               <div className="block-signin">
                 <a
                   className="btn btn-default hover-up icon-arrow-right"
@@ -108,7 +108,7 @@ const Header = () => {
                   Get in Touch
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>

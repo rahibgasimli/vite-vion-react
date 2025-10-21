@@ -13,8 +13,10 @@ const ImageSection = ({ content }) => {
   console.log("🖼️ Image URL:", imageUrl)
 
   return (
-    <div className="col-lg-12">
-      <div className="box-image mb-60 mt-60">
+    <div class="section-box">
+        <div class="container">
+    <div className="col-lg-12 m-auto">
+      <div className="box-image mb-60 mt-60 m-auto">
         <img 
           className="img-responsive" 
           src={imageUrl} 
@@ -25,6 +27,8 @@ const ImageSection = ({ content }) => {
           }}
         />
       </div>
+    </div>
+    </div>
     </div>
   )
 }
