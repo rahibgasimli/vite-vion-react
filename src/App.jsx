@@ -29,6 +29,7 @@ import FullWidthSection from "./components/modulesComponents/FullWidthSection";
 import TextSection from "./components/modulesComponents/TextSection";
 import FeedbackSection from "./components/modulesComponents/FeedbackSection";
 import ImageSection from "./components/modulesComponents/ImageSection";
+import ButtonSection from "./components/modulesComponents/ButtonSection";
 
 // DYNAMIC PAGE KOMPONENTİ - BU ƏSAS SƏHİFƏ KOMPONENTİDİR
 const DynamicPage = () => {
@@ -115,7 +116,8 @@ const PageRenderer = ({ pageData }) => {
     Promotion: PromotionSection,
     "Full-Width Multiple Images Section": FullWidthMultipleImagesSection,
     Contact: ContactSection,
-    'Image' : ImageSection
+    'Image' : ImageSection,
+    "Button" : ButtonSection
   };
 
   return (
@@ -282,7 +284,7 @@ const DetailRenderer = ({ detailData, type }) => {
           Text: TextSection,
           Image: ImageSection, // ✅ Image modulu üçün yeni komponent
           Feedback: FeedbackSection,
-          Button: PromotionSection,
+          Button: ButtonSection,
         };
 
         const Component = moduleComponents[module.module_type];
