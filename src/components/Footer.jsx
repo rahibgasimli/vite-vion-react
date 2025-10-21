@@ -73,28 +73,28 @@ const Footer = () => {
       <div className="container">
         {/* --- TOP SECTION --- */}
         <div className="footer-top">
-          <div className="row align-items-center">
+          <div className="d-flex flex-wrap gap-5 align-items-center justify-content-between">
             <div className="footer-logo">
               <Link className="d-flex" href="/">
                 <img alt="Vion" src={FooterLogo} />
               </Link>
             </div>
             {/* --- SOCIAL ICONS --- */}
-            <div className="col-md-8 col-sm-6 text-center text-md-end color-green-900">
+            <div className="text-center text-md-end color-green-900">
               {" "}
               <div className="footer-social">
                 {" "}
                 <a href={footerInfo.facebook_url} target="_blank">
-                  <FacebookIcon />
+                  <FacebookIcon footerIcon={true} />
                 </a>{" "}
                 <a href={footerInfo.instagram_url} target="_blank">
-                  <InstagramIcon />
+                  <InstagramIcon footerIcon={true} />
                 </a>{" "}
                 <a href={footerInfo.linkedin_url} target="_blank">
-                  <LinkedinIcon />
+                  <LinkedinIcon footerIcon={true} />
                 </a>{" "}
                 <a href={footerInfo.youtube_url} target="_blank">
-                  <YoutubeIcon />
+                  <YoutubeIcon footerIcon={true} />
                 </a>{" "}
               </div>{" "}
             </div>{" "}
