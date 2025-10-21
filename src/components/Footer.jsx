@@ -28,9 +28,6 @@ const Footer = () => {
     const firstPart = section.children.slice(0, splitIndex);
     const secondPart = section.children.slice(splitIndex);
 
-    // Services üçün /services prefix əlavə olunur
-    const basePath = section.title === "Services" ? "/services" : "";
-
     return (
       <>
         <div className="col-lg-3 width-20 mb-30">
@@ -40,7 +37,7 @@ const Footer = () => {
               <li key={item.slug}>
                 <Link
                   className="color-gray-900"
-                  to={`${basePath}/${item.slug}`}
+                  to={`/${item.slug}`}
                 >
                   {item.title}
                 </Link>
@@ -56,7 +53,7 @@ const Footer = () => {
               <li key={item.slug}>
                 <Link
                   className="color-gray-900"
-                  to={`${basePath}/${item.slug}`}
+                  to={`/${item.slug}`}
                 >
                   {item.title}
                 </Link>
@@ -126,11 +123,7 @@ const Footer = () => {
                     <li key={item.slug}>
                       <Link
                         className="color-gray-900"
-                        to={
-                          section.title === "Services"
-                            ? `/services/${item.slug}`
-                            : `/${item.slug}`
-                        }
+                        to={item.slug}
                       >
                         {item.title}
                       </Link>
@@ -176,7 +169,7 @@ const Footer = () => {
 
         {/* --- FOOTER BOTTOM --- */}
         <div className="footer-bottomm mt-20">
-          <div className="row align-items-center">
+          <div className="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4">
             <div className="col-md-6">
               <span className="color-gray-400 text-body-lead">
                 &copy; VION {new Date().getFullYear()}. {footerInfo.copyright}

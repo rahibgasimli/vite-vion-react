@@ -10,12 +10,19 @@ const Header = () => {
   const isSticky = useStickyHeader();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [menuData, setMenuData] = useState([]);
+  const [headerButtonData, setHeaderButtonData] = useState({
+    text: '',
+    url: '',
+  });
 
   useEffect(() => {
     fetchData("en/navigation/main").then((data) => {
       console.log("Menyu məlumatları:", data);
       if (data && data.navigation) {
         setMenuData(data.navigation);
+      }
+      if (data && data.header_button) {
+        setHeaderButtonData(data.header_button)
       }
     });
   }, []);
@@ -99,16 +106,16 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="header-right">
+            <div className="header-right">
               <div className="block-signin">
-                <a
+                <Link
                   className="btn btn-default hover-up icon-arrow-right"
-                  href="page-signup.html"
+                  to={headerButtonData.url}
                 >
-                  Get in Touch
-                </a>
+                  {headerButtonData.text}
+                </Link>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </header>

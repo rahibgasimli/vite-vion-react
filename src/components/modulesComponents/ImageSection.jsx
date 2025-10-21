@@ -15,9 +15,9 @@ const ImageSection = ({ content }) => {
   return (
     <div class="section-box">
         <div class="container">
-    <div className="col-lg-12 m-auto">
-      <div className="box-image mb-60 mt-60 m-auto">
-        <img 
+    <div className="col-lg-12">
+      <div className="box-image mb-60 mt-60 d-flex justify-content-center">
+        <img
           className="img-responsive" 
           src={imageUrl} 
           alt="Agon"

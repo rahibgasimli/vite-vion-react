@@ -63,7 +63,7 @@ const SlidersSection = ({ content }) => {
                                 />
                             </div>
                         </div>
-                        <div className="col-lg-5">
+                        <div className="col-lg-5 d-none d-lg-block">
                             <div className={`slide-container ${isAnimating ? 'animating' : ''}`}>
                                 <img 
                                     src={`https://vionadvisory.com/storage/${nextSlide.slide_image}`}

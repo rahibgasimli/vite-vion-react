@@ -42,7 +42,7 @@ const MobileHeader = ({ isOpen, onClose, menuData }) => {
         key={item.slug}
         className={item.children && item.children.length > 0 ? 'has-children' : ''}
       >
-        <Link to={`/${item.slug}`} onClick={handleLinkClick}>
+        <Link to={`/${item.slug}`} className={`${item.type === "none" ? 'pe-none' : ''}`} onClick={handleLinkClick}>
           {item.title}
         </Link>
         {item.children && item.children.length > 0 && renderSubMenu(item.children)}

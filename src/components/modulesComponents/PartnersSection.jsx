@@ -22,8 +22,8 @@ const PartnersSection = ({ content, data }) => {
         </div>
       </div>
       <div className="container mt-70">
-        <div className="row  justify-content-center">
-          <div className="d-flex flex-wrap" style={{ rowGap: "90px", columnGap: "120px" }}>
+        <div className="d-flex justify-content-center">
+          <div className="d-flex flex-wrap justify-content-center" style={{ rowGap: "90px", columnGap: "120px" }}>
             {data.map((partner, index) => (
               <a target="blank_" href={partner.website} key={index}>
                 <img

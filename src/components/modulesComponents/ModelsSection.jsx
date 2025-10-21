@@ -180,7 +180,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
             <img src={`https://vionadvisory.com/storage/${service.image}`} />
           </Link>
         </div>
-        <Link className="text-heading-5 color-gray-900" to={service.slug}>
+        <Link className="text-heading-5 color-gray-900 service_title" to={service.slug}>
           {service.title}
         </Link>
         <div className="category-info-bottom">

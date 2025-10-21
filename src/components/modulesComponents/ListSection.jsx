@@ -42,7 +42,7 @@ const ListSection = ({ content }) => {
               
               <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
               <div className="list-icons mt-40 hover-up h-100 d-flex flex-column align-items-stretch">
-                <div className="item-icon flex-grow-1">
+                <div className={`item-icon ${index === content.list.length - 1 ? 'last-item-icon' : ''} flex-grow-1`}>
                   <span className="icon-left">
                     <i className={`${list.le_icon} icon-main`}></i>
                   </span> 
