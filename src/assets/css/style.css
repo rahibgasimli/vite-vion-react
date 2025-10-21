@@ -3764,8 +3764,7 @@ label {
   width: 100%;
 }
 .header .main-header .header-left .header-logo {
-  margin-right: 50px;
-  width: 162px;
+  width: 138px;
   min-width: 138px;
 }
 .header .main-header .header-left .header-nav {
@@ -4100,6 +4099,9 @@ label {
   transition: fill 0.3s ease;
 }
 
+.footer_social_icon_path {
+  fill: #441A7C;
+}
 .social_icon:hover .social_icon_path {
   fill: #441A7C;
   transition: fill 0.3s ease;
@@ -4573,8 +4575,7 @@ label {
 }
 
 .footer .footer-top .footer-logo {
-  width: 162px;
-  margin-right: 50px;
+  width: 138px;
 }
 
 .footer .menu-footer {
