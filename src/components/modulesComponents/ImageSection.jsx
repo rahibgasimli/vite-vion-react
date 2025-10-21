@@ -9,7 +9,7 @@ const ImageSection = ({ content }) => {
     return null
   }
 
-  const imageUrl = `https://vion.make.az/storage/${content.image}`
+  const imageUrl = `https://vionadvisory.com/storage/${content.image}`
   console.log("🖼️ Image URL:", imageUrl)
 
   return (

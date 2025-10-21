@@ -26,7 +26,7 @@ const FullWidthImageSection = ({ content, module_type }) => {
               <div className="col-lg-10 crop-box">
                 <img 
                   className="img-responsive" 
-                  src={`https://vion.make.az/storage/${content.fwi_image}`} 
+                  src={`https://vionadvisory.com/storage/${content.fwi_image}`} 
                   alt="Vion"
                 />
               </div>

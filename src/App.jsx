@@ -232,7 +232,7 @@ const DetailRenderer = ({ detailData, type }) => {
             className="banner-hero banner-head-image"
             style={{
               background: bannerImage
-                ? `url(https://vion.make.az/storage/${bannerImage})`
+                ? `url(https://vionadvisory.com/storage/${bannerImage})`
                 : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
             }}
           >

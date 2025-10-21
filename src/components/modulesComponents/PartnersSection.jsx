@@ -28,7 +28,7 @@ const PartnersSection = ({ content, data }) => {
               <a target="blank_" href={partner.website} key={index}>
                 <img
                   alt={partner.name}
-                  src={`https://vion.make.az/storage/${partner.logo}`}
+                  src={`https://vionadvisory.com/storage/${partner.logo}`}
                   style={{ width: "100px", height: "100px", objectFit: "contain" }}
                 />
               </a>

@@ -75,7 +75,7 @@ const Footer = () => {
         <div className="footer-top">
           <div className="d-flex flex-wrap gap-5 align-items-center justify-content-between">
             <div className="footer-logo">
-              <Link className="d-flex" href="/">
+              <Link className="d-flex" to="/">
                 <img alt="Vion" src={FooterLogo} />
               </Link>
             </div>
