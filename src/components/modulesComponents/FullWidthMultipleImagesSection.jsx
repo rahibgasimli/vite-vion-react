@@ -6,15 +6,15 @@ const FullWidthMultipleImagesSection = ({ content }) => {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6 col-sm-12 col-12 block-gallery-1">
-            <div className="row">
-              <div className="col-lg-6" key={index}>
+            <div className="d-flex gap-3">
+              <div className="col-6 d-flex flex-column gap-3">
                 {content.fwmi_images.map((image, index) => {
-                  return index !== 2 && <img className="img-responsive" src={`https://vion.make.az/storage/${image}`} alt="Vion" />
+                  return index !== 2 && <img className="img-responsive" key={index} src={`https://vion.make.az/storage/${image}`} alt="Vion" />
                 })}
               </div>
-              <div className="col-lg-6" key={index}>
+              <div className="col-6">
                 {content.fwmi_images.map((image, index) => {
-                  return index === 2 && <img className="img-responsive" src={`https://vion.make.az/storage/${image}`} alt="Vion" />
+                  return index === 2 && <img className="img-responsive" key={index} src={`https://vion.make.az/storage/${image}`} alt="Vion" />
                 })}
               </div>
 
