@@ -23,7 +23,7 @@ const ListSection = ({ content }) => {
       </div>
 
       <div className="container mt-40">
-        <div className="row">
+        <div className="row align-items-stretch">
           {content?.list_type === "card"
             ? // Kart stilində siyahı
               content?.list?.map((list, index) => (
@@ -37,20 +37,22 @@ const ListSection = ({ content }) => {
                   </div>
                 </div>
               ))
-            : content?.list?.map((list, index) => (
-                <div class="col-lg-4 col-md-12 col-sm-12" key={index}>
-                  <div class="list-icons mt-40 hover-up">
-                    <div class="item-icon">
-                      <span class="icon-left">
-                        <i className={`${list.le_icon} icon-main`}></i>
-                      </span> 
-                      <h4 class="text-heading-4">{list.le_title}</h4>
-                      <p class="text-body-text color-gray-600 mt-15">
-                        {list.le_description}
-                      </p>
-                    </div>
-                  </div>
+            : 
+             content?.list?.map((list, index) => (
+              
+              <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
+              <div className="list-icons mt-40 hover-up h-100 d-flex flex-column align-items-stretch">
+                <div className="item-icon flex-grow-1">
+                  <span className="icon-left">
+                    <i className={`${list.le_icon} icon-main`}></i>
+                  </span> 
+                  <h4 className="text-heading-4">{list.le_title}</h4>
+                  <p className="text-body-text color-gray-600 mt-15">
+                    {list.le_description}
+                  </p>
                 </div>
+              </div>
+            </div>
               ))}
         </div>
       </div>
