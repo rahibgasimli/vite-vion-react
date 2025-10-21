@@ -11,6 +11,10 @@ const ContactSection = ({ content }) => {
     message: "",
   });
   const [laoding, setLoading] = useState(false);
+  const [submitResponse, setSubmitResponse] = useState({
+    success: false,
+    message: "",
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +34,10 @@ const ContactSection = ({ content }) => {
 
     if (response.status === "success") {
       setLoading(false);
-      toast.success(response.message);
+      setSubmitResponse({
+        success: true,
+        message: response.message
+      })
       setFormData({
         name: "",
         company: "",
@@ -40,7 +47,10 @@ const ContactSection = ({ content }) => {
       });
     } else if (response.status === "error") {
       setLoading(false);
-      toast.error(response.message);
+      setSubmitResponse((prev) => ({
+        ...prev,
+        message: response.message
+      }))
     }
   };
 
@@ -69,7 +79,7 @@ const ContactSection = ({ content }) => {
                 {content?.company_address}
               </p>
               <p className="text-body-text color-gray-600">
-                <a className="underline color-gray-600" href={content?.phone}>
+                <a className="underline color-gray-600" href={`tel:${content?.phone}`}>
                   {content?.phone}
                 </a>
               </p>
@@ -150,15 +160,15 @@ const ContactSection = ({ content }) => {
                       ></textarea>
                     </div>
                   </div>
-                  <div className="col-lg-12 mt-15">
+                  <div className="d-flex flex-column flex-md-row align-items-center gap-4 mt-15">
                     <button
-                      className="btn btn-black icon-arrow-right-white mr-40 mb-20"
+                      className={`send_message_btn btn ${submitResponse.success ? "icon-success-white btn-success" : "icon-arrow-right-white btn-black"} mb-20`}
                       type="submit"
-                      disabled={laoding}
+                      disabled={laoding || submitResponse.success}
                     >
                       {laoding ? "Sending..." : "Send Message"}
                     </button>
-                    <br className="d-lg-none d-block" />
+                    {submitResponse.message !== "" && <p className="send_message_success">{submitResponse.message}</p>}
                   </div>
                 </div>
               </form>

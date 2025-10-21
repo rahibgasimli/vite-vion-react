@@ -58,8 +58,8 @@ export const fetchDetailData = async (type, slug) => {
     const formattedType = type.toLowerCase();
 
     // API endpoint-ini yoxlayın
-    const apiUrl = `https://vion.make.az/api/v1/en/${formattedType}/${slug}`;
-    console.log("API URL:", apiUrl); // Debug üçün
+    const apiUrl = `https://vionadvisory.com/api/v1/en/${formattedType}/${slug}`;
+    console.log("API URL:", apiUrl); // Debug üçün 
 
     const response = await fetch(apiUrl);
 

@@ -4,17 +4,17 @@ const FullWidthMultipleImagesSection = ({ content }) => {
   return (
     <section className="section-box mt-100 bg-green-900 pt-90 pb-90">
       <div className="container">
-        <div className="row align-items-center">
+        <div className="row align-items-center g-5">
           <div className="col-lg-6 col-sm-12 col-12 block-gallery-1">
-            <div className="row">
-              <div className="col-lg-6" key={index}>
+            <div className="d-flex gap-3">
+              <div className="col-6 d-flex flex-column gap-3">
                 {content.fwmi_images.map((image, index) => {
-                  return index !== 2 && <img className="img-responsive" src={`https://vion.make.az/storage/${image}`} alt="Vion" />
+                  return index !== 2 && <img className="img-responsive" key={index} src={`https://vionadvisory.com/storage/${image}`} alt="Vion" />
                 })}
               </div>
-              <div className="col-lg-6" key={index}>
+              <div className="col-6">
                 {content.fwmi_images.map((image, index) => {
-                  return index === 2 && <img className="img-responsive" src={`https://vion.make.az/storage/${image}`} alt="Vion" />
+                  return index === 2 && <img className="img-responsive" style={{ height: "100%", paddingRight: 10 }} key={index} src={`https://vionadvisory.com/storage/${image}`} alt="Vion" />
                 })}
               </div>
 

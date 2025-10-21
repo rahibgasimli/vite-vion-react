@@ -71,7 +71,7 @@ const ServicesSection = ({ content }) => {
                     <div className="icon-pattern crop-box">
                       <img 
                         className="img-responsive" 
-                        src={`https://vion.make.az/storage/${service.image}`} 
+                        src={`https://vionadvisory.com/storage/${service.image}`} 
                         alt={service.service_name}
                       />
                     </div>

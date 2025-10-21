@@ -42,7 +42,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
       <div className="card-grid-style-5 hover-up">
         <div className="grid-5-img mb-15">  
           <img
-            src={`https://vion.make.az/storage/${member.image}`}
+            src={`https://vionadvisory.com/storage/${member.image}`}
             className="object-fit-cover"
             alt={member.name}
           />
@@ -76,7 +76,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
         <div className="grid-4-img">
           <Link to={`/blogs/${news.slug}`}>
             <img
-              src={`https://vion.make.az/storage/${news.image}`}
+              src={`https://vionadvisory.com/storage/${news.image}`}
               alt={news.title}
             />
           </Link>
@@ -103,7 +103,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
             <div className="inner-image">
               <img
                 className="img-responsive"
-                src={`https://vion.make.az/storage/${industry.image}`}
+                src={`https://vionadvisory.com/storage/${industry.image}`}
                 alt={industry.title}
               />
             </div>
@@ -146,7 +146,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           <div className="product-image crop-box">
             <img
               className="img-responsive"
-              src={`https://vion.make.az/storage/${portfolio.main_image}`}
+              src={`https://vionadvisory.com/storage/${portfolio.main_image}`}
               alt={portfolio.title}
             />
           </div>
@@ -177,10 +177,10 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
       <div className="grid-category-2">
         <div className="grid-category-image">
           <Link to={service.slug}>
-            <img src={`https://vion.make.az/storage/${service.image}`} />
+            <img src={`https://vionadvisory.com/storage/${service.image}`} />
           </Link>
         </div>
-        <Link className="text-heading-5 color-gray-900" to={service.slug}>
+        <Link className="text-heading-5 color-gray-900 service_title" to={service.slug}>
           {service.title}
         </Link>
         <div className="category-info-bottom">

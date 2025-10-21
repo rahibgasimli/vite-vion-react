@@ -12,7 +12,7 @@ const FAQSection = ({ content, data }) => {
       <div className="container">
         <div className="row">
           <div className="col-lg-2 col-sm-1 col-12"></div>
-          <div className="container text-center col-lg-8 col-sm-10 col-12 mt-150 mb-90">
+          <div className="faq_title_container container text-center col-lg-8 col-sm-10 col-12 mt-150 mb-90 faq_container">
             {content?.faq_title ? <h2 className="text-heading-1 color-gray-900">{content.faq_title}</h2> : null}
             {content?.faq_description ? <p className="text-body-lead-large color-gray-600 mt-20">{content.faq_description}</p> : null}
           </div>

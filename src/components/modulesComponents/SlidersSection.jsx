@@ -56,17 +56,17 @@ const SlidersSection = ({ content }) => {
                         <div className="col-lg-7">
                             <div className={`slide-container ${isAnimating ? 'animating' : ''}`}>
                                 <img 
-                                    src={`https://vion.make.az/storage/${currentSlide.image}`}
+                                    src={`https://vionadvisory.com/storage/${currentSlide.image}`}
                                     
                                     className="slide-image main-image"
                                     alt="Banner 1"
                                 />
                             </div>
                         </div>
-                        <div className="col-lg-5">
+                        <div className="col-lg-5 d-none d-lg-block">
                             <div className={`slide-container ${isAnimating ? 'animating' : ''}`}>
                                 <img 
-                                    src={`https://vion.make.az/storage/${nextSlide.slide_image}`}
+                                    src={`https://vionadvisory.com/storage/${nextSlide.slide_image}`}
                                     className="slide-image side-image"
                                     alt="Banner 2"
                                 />
