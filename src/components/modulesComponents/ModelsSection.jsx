@@ -55,9 +55,9 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           {member.bio}
         </p>
         <div className="social-bottom">
-          {member.instagram_url && <InstagramIcon />}
-          {member.linkedin_url && <LinkedinIcon />}
-          {member.facebook_url && <FacebookIcon />}
+          {member.instagram_url && <a href={member.instagram_url} target="_blank"><InstagramIcon /></a>}
+          {member.linkedin_url && <a href={member.linkedin_url} target="_blank"><LinkedinIcon /></a>}
+          {member.facebook_url && <a href={member.facebook_url} target="_blank"><FacebookIcon /></a>}
         </div>
       </div>
     </div>

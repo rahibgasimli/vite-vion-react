@@ -2,7 +2,7 @@ import React from "react";
 
 const PartnersSection = ({ content, data }) => {
   return (
-    <section className="section-box" style={{ paddingInline: '127px' }}>
+    <section className="section-box partner-container">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-2 col-sm-1 col-12"></div>

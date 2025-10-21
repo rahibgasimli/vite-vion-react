@@ -3766,6 +3766,7 @@ label {
 .header .main-header .header-left .header-logo {
   margin-right: 50px;
   width: 162px;
+  min-width: 138px;
 }
 .header .main-header .header-left .header-nav {
   display: inline-block;
@@ -7617,6 +7618,10 @@ label {
   .lg-hidden{
     display: none;
   }
+
+  .partner-container {
+    padding-inline: 127px;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -9074,6 +9079,11 @@ input.qty-val {
   .banner-hero.banner-3 {
     padding-top: 50px;
   }
+
+  .partner-container {
+    padding-inline: 30px;
+  }
+
   .header .main-header .header-right {
     max-width: 265px;
   }
