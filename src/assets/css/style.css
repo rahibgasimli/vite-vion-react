@@ -670,6 +670,11 @@ a {
 
 .reading-btn {
   background-color: #101828 !important;
+  color: #f2f4f7 !important;
+}
+.reading-btn:hover {
+  color: #101828 !important;
+  background-color: #f2f4f7 !important;
 }
 
 .bg-9 {
