@@ -284,18 +284,6 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
       case "Service":
         return (
           <div>
-            <section className="section-box">
-              <div className="banner-hero banner-breadcrums bg-8">
-                <div className="container text-center">
-                  <h1 className="text-heading-2 color-gray-1000 mb-20">
-                    {pageTitle}
-                  </h1>
-                  <p className="text-body-text color-gray-500">
-                    {pageDescription}
-                  </p>
-                </div>
-              </div>
-            </section>
             <div className="section-box mt-100">
               <div className="container list-category-homepage7 mt-70">
                 <div className="row">

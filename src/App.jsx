@@ -95,7 +95,7 @@ const PageRenderer = ({ pageData }) => {
   if (!pageData?.modules) return null;
 
   // Əgər main_image və cover_image null olarsa VƏ about səhifəsi deyilsə, breadcrumb banner göstər
-  const showBreadcrumbBanner = !pageData.main_image && !pageData.cover_image && pageData.slug !== "about";
+  const showBreadcrumbBanner = !pageData.main_image && !pageData.cover_image && pageData.slug !== "about" && pageData.slug !== "homepage";
 
   const moduleComponents = {
     "List Section": ListSection,
