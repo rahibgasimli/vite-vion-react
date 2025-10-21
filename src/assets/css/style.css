@@ -3763,7 +3763,8 @@ label {
   width: 100%;
 }
 .header .main-header .header-left .header-logo {
-  margin-right: 50px;
+  width: 138px;
+  min-width: 138px;
 }
 .header .main-header .header-left .header-nav {
   display: inline-block;
