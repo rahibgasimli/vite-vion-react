@@ -26,7 +26,6 @@ export const postData = async (endpoint, payload) =>
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Cavab:", data);
       return data;
     })
     .catch((error) => {
@@ -59,15 +58,9 @@ export const fetchDetailData = async (type, slug) => {
 
     // API endpoint-ini yoxlayın
     const apiUrl = `https://vionadvisory.com/api/v1/en/${formattedType}/${slug}`;
-    console.log("API URL:", apiUrl); // Debug üçün 
 
     const response = await fetch(apiUrl);
 
-    console.log("Response status:", response.status);
-    console.log(
-      "Response headers:",
-      Object.fromEntries(response.headers.entries())
-    );
 
     if (!response.ok) {
       // Əgər 404 və ya digər xəta varsa, məzmunu oxuyun
@@ -78,7 +71,6 @@ export const fetchDetailData = async (type, slug) => {
 
     // Cavabın JSON olub-olmadığını yoxlayın
     const contentType = response.headers.get("content-type");
-    console.log("Content-Type:", contentType);
 
     if (!contentType || !contentType.includes("application/json")) {
       const text = await response.text();
@@ -98,7 +90,6 @@ export const fetchDetailData = async (type, slug) => {
     }
 
     const data = await response.json();
-    console.log("API Response data:", data);
     return data;
   } catch (error) {
     console.error(`${type} məlumatları alınarkən xəta:`, error);

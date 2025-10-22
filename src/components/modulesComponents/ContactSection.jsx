@@ -28,9 +28,8 @@ const ContactSection = ({ content }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log("Form Data:", formData);
+
     const response = await postData("contact", formData);
-    console.log("response : ", response);
 
     if (response.status === "success") {
       setLoading(false);
@@ -55,8 +54,8 @@ const ContactSection = ({ content }) => {
   };
 
   return (
-    <section className="section-box mb-200">
-      <div className="container mb-20 mt-140">
+    <section className="section-box mt-150">
+      <div className="container">
         <div className="bdrd-58 box-gray-100 bg-7">
           <div className="row">
             <div className="col-lg-12 mb-60">

@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FullWidthImageSection = ({ content, module_type }) => {
-  console.log("🖼️ FullWidthImageSection component:", { module_type, content });
 
   // Əgər bu Image modulu-dursa, heç nə göstərmə - bu artıq ImageSection tərəfindən idarə olunur
   if (module_type === "Image") {

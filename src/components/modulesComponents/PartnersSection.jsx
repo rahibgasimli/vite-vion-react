@@ -6,7 +6,7 @@ const PartnersSection = ({ content, data }) => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-2 col-sm-1 col-12"></div>
-          <div className="container text-center col-lg-8 col-sm-10 col-12 mt-150">
+          <div className="container text-center col-lg-8 col-sm-10 col-12">
             {content?.partners_title ? (
               <h2 className="text-heading-1 color-gray-900">
                 {content?.partners_title}
@@ -21,7 +21,7 @@ const PartnersSection = ({ content, data }) => {
           <div className="col-lg-2 col-sm-1 col-12"></div>
         </div>
       </div>
-      <div className="container mt-70">
+      <div className="container">
         <div className="d-flex justify-content-center">
           <div className="d-flex flex-wrap justify-content-center" style={{ rowGap: "90px", columnGap: "120px" }}>
             {data.map((partner, index) => (

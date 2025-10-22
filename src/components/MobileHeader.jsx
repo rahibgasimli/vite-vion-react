@@ -3,8 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MobileHeader = ({ isOpen, onClose, menuData }) => {
-  console.log("MobileHeader render olunur:", { isOpen, menuData });
-
   const handleLinkClick = () => {
     // səhifəni yuxarıya çək
     window.scrollTo({ top: 0, behavior: "smooth" });
