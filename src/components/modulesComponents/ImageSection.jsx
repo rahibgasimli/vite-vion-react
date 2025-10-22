@@ -2,7 +2,6 @@
 import React from 'react'
 
 const ImageSection = ({ content }) => {
-  console.log("🖼️ ImageSection content:", content) // BU SƏTRİ ƏLAVƏ ET
   
   if (!content?.image) {
     console.warn("❌ ImageSection: No image found in content:", content)
@@ -10,8 +9,6 @@ const ImageSection = ({ content }) => {
   }
 
   const imageUrl = `https://vionadvisory.com/storage/${content.image}`
-  console.log("🖼️ Image URL:", imageUrl)
-
   return (
     <div class="section-box">
         <div class="container">

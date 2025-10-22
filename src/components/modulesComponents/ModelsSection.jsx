@@ -173,12 +173,8 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
               {industry.description}
             </p>
             <div className="mt-60">
-              <a
-                className="btn btn-black shape-round icon-arrow-right-white"
-                href={industry.button_url}
-              >
-                {industry.button_text}
-              </a>
+              <Link
+                className="btn btn-black shape-round icon-arrow-right-white" to={`/${industry.button_url}`}>{industry.button_text}</Link>
             </div>
           </div>
         </div>
@@ -350,7 +346,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
               <div className="container list-category-homepage7 mt-70">
                 <div className="row">
                   {data.map((service, index) => (
-                    <ServiceItem service={service} index={index} />
+                    <ServiceItem service={service} key={index} />
                   ))}
                 </div>
               </div>

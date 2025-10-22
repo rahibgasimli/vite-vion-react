@@ -2,8 +2,6 @@ import React from 'react'
 
 const BannerSection = ({ content }) => {
 
-  console.log(content)
-
   return (
     <section className="section-box">
     <div className="banner-hero banner-4">

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NewsSection = ({ content, data }) => {
   return (
     <section className="section-box">
-      <div className="container mt-60">
+      <div className="container">
         <div className="row">
           <div className="col-lg-8 col-12 order-1 order-lg-1 mb-30">
             {content?.news_title ? (

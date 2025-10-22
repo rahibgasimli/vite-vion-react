@@ -13,7 +13,7 @@ const PromotionSection = ({ content }) => {
         <div className="col-lg-7 col-sm-12 block-we-do-2">
           <h3 className="text-heading-1 mt-30">{content?.promotion_title}</h3>
           <p className="text-body-lead-large color-gray-600 mt-60">{content?.promotion_description}</p>
-            <div className="mt-60"><Link className="btn btn-black shape-round icon-arrow-right-white" to={content?.promotion_button_url}>{content?.promotion_button_text}</Link></div>
+            <div className="mt-60"><Link className="btn btn-black shape-round icon-arrow-right-white" to={`/${content?.promotion_button_url}`}>{content?.promotion_button_text}</Link></div>
         </div>
       </div>
     </div>

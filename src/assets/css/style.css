@@ -712,6 +712,10 @@ a:hover {
   width: 100%;
 }
 
+.section-box:not(:first-child) {
+  margin-top: 180px;
+}
+
 .box-shadow-4 {
   box-shadow: 4px 6px 23px rgba(228, 92, 35, 0.1);
 }
@@ -4858,6 +4862,10 @@ label {
 }
 .post-list-small-item:not(:last-child) {
   margin-bottom: 15px;
+}
+
+.footer{
+  margin-top: 180px;
 }
 
 .footer .width-20 {

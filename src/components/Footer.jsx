@@ -19,7 +19,6 @@ const Footer = () => {
       if (data) {
         setMenuData(data.navigation || []);
         setFooterInfo(data.footer_info || {});
-        console.log("footer data: ", data);
       }
     });
   }, []);
@@ -30,7 +29,7 @@ const Footer = () => {
 
     return (
       <>
-        <div className="col-lg-3 width-20 mb-30">
+        <div className="col-lg-3 width-20">
           <h4 className="text-heading-5">{section.title}</h4>
           <ul className="menu-footer mt-20">
             {firstPart.map((item) => (
@@ -66,7 +65,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer mt-50">
+    <footer className="footer">
       <div className="container">
         {/* --- TOP SECTION --- */}
         <div className="footer-top">

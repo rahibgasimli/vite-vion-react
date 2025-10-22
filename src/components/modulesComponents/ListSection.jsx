@@ -2,7 +2,7 @@ import React from "react";
 
 const ListSection = ({ content }) => {
   return (
-    <section className="section-box mt-100 mb-140">
+    <section className="section-box mt-100">
       <div className="container">
         <div className="row">
           <div className="col-lg-1 col-sm-1 col-12"></div>
@@ -27,11 +27,11 @@ const ListSection = ({ content }) => {
           {content?.list_type === "card"
             ? // Kart stilində siyahı
               content?.list?.map((list, index) => (
-                <div class="col-lg-6 col-md-6 col-sm-3 d-flex" key={index}>
-                  <div class="card-grid-style-3 hover-up">
-                    <h1 class="text-heading-1 color-green-800">{index + 1}</h1>
-                    <h3 class="text-heading-3 mb-30 mt-30">{list.le_title}</h3>
-                    <p class="text-body-text text-desc color-gray-500">
+                <div className="col-lg-6 col-md-6 col-sm-3 d-flex" key={index}>
+                  <div className="card-grid-style-3 hover-up">
+                    <h1 className="text-heading-1 color-green-800">{index + 1}</h1>
+                    <h3 className="text-heading-3 mb-30 mt-30">{list.le_title}</h3>
+                    <p className="text-body-text text-desc color-gray-500">
                       {list.le_description}
                     </p>
                   </div>

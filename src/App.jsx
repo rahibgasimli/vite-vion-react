@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { fetchPageData, fetchDetailData } from "./assets/utils/getData";
+import { fetchPageData, fetchDetailData, fetchData } from "./assets/utils/getData";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/css/style.css";
@@ -40,6 +40,14 @@ const DynamicPage = () => {
   const { slug } = useParams();
   const location = useLocation();
 
+  const [appData, setAppData] = useState([]);
+
+  useEffect(() => {
+    fetchData("en/app-data").then((data) => {
+      setAppData(data);
+    })
+  }, [])
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -53,7 +61,6 @@ const DynamicPage = () => {
         setLoading(true);
         setError(null);
         const data = await fetchPageData(slug);
-        console.log("AGAGAGAGAGG Data: ", data);
         setPageData(data);
       } catch (err) {
         console.error("Səhifə məlumatları alınarkən xəta:", err);
@@ -70,9 +77,9 @@ const DynamicPage = () => {
     return (
       <div className="container text-center py-5">
         <div className="spinner-border" role="status">
-          <span className="visually-hidden">Yüklənir...</span>
+          <span className="visually-hidden">{appData.loading_text}</span>
         </div>
-        <p className="mt-2">Yüklənir...</p>
+        <p className="mt-2">{appData.loading_text}</p>
       </div>
     );
   }
@@ -195,13 +202,21 @@ const DetailPage = ({ type }) => {
     loadDetailData();
   }, [slug, type]);
 
+  const [appData, setAppData] = useState([]);
+
+  useEffect(() => {
+    fetchData("en/app-data").then((data) => {
+      setAppData(data);
+    })
+  }, [])
+
   if (loading) {
     return (
       <div className="container text-center py-5">
         <div className="spinner-border" role="status">
-          <span className="visually-hidden">Yüklənir...</span>
+          <span className="visually-hidden">{appData.loading_text}</span>
         </div>
-        <p className="mt-2">Yüklənir...</p>
+        <p className="mt-2">{appData.loading_text}</p>
       </div>
     );
   }
@@ -224,7 +239,6 @@ const DetailPage = ({ type }) => {
 // DETAIL RENDERER KOMPONENTİ
 const DetailRenderer = ({ detailData, type }) => {
   if (!detailData || !detailData.modules) {
-    console.log("No modules found in detailData:", detailData);
     return null;
   }
 
@@ -276,7 +290,6 @@ const DetailRenderer = ({ detailData, type }) => {
 
       {/* DİGƏR MODULLAR */}
       {detailData.modules.map((module, index) => {
-        console.log("🔄 Rendering module:", module.module_type, module);
 
         const moduleComponents = {
           // ƏSAS MODULLAR

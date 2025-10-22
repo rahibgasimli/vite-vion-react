@@ -17,7 +17,6 @@ const Header = () => {
 
   useEffect(() => {
     fetchData("en/navigation/main").then((data) => {
-      console.log("Menyu məlumatları:", data);
       if (data && data.navigation) {
         setMenuData(data.navigation);
       }
@@ -28,12 +27,10 @@ const Header = () => {
   }, []);
 
   const toggleMobileMenu = () => {
-    console.log("Mobil menyu toggle:", isMobileMenuOpen);
     setIsMobileMenuOpen((prev) => !prev);
   };
 
   const closeMobileMenu = () => {
-    console.log("Mobil menyu bağlanır");
     setIsMobileMenuOpen(false);
     document.body.style.overflow = "auto";
   };

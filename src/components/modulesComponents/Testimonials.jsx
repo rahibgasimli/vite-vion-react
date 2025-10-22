@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 
 const Testimonials = ({ content }) => {
 
-  console.log(content)
-
   return (
-    <section className="section-box pt-100 pb-100 mt-180 bg-3">
+    <section className="section-box pt-100 pb-100 bg-3">
       <div className="container">
         <div className="row">
           <div className="col-lg-5 mb-30">
