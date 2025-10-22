@@ -713,8 +713,10 @@ a:hover {
 }
 
 .section-box:not(:first-child) {
-  margin-top: 180px;
+  margin-top: 100px;
 }
+
+
 
 .box-shadow-4 {
   box-shadow: 4px 6px 23px rgba(228, 92, 35, 0.1);
@@ -9217,6 +9219,10 @@ input.qty-val {
   .galleries {
     padding: 0px 0px 0px 0px;
   }
+  .section-box:not(:first-child) {
+    margin-top: 20px;
+  }
+  
   .list-icons .last-item-icon {
     border-bottom: none;
   }

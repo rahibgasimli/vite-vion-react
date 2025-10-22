@@ -2,8 +2,8 @@ import React from 'react'
 
 const NewsletterSection = ({ content }) => {
   return (
-    <section className="section-box overflow-visible mb-100">
-    <div className="container mt-100">
+    <section className="section-box overflow-visible">
+    <div className="container">
       <div className="row">
         <div className="col-lg-10 mx-auto">
           <div className="bg-2 box-newsletter position-relative">

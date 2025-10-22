@@ -11,7 +11,7 @@ const FullWidthImageSection = ({ content, module_type }) => {
 
   // Əgər bu Full-Width Image Section-dursa (köhnə funksionallıq)
   return (
-    <section className="section-box mt-100 mb-200 bg-3 pt-90 justify-content-center">
+    <section className="section-box mt-100 bg-3 pt-90 justify-content-center">
       <div className="container">
         <div className="row justify-content-between align-items-center">
           <div className="col-lg-5 col-sm-12 col-12 ">
