@@ -23,7 +23,7 @@ const FullWidthMultipleImagesSection = ({ content }) => {
           <div className="col-lg-6 col-sm-12 col-12">
             <h2 className="text-heading-1 color-white mb-30 mt-20">{content.fwmi_title}</h2>
             <p className="text-inter-lg">{content.fwmi_description}</p>
-            <div className="mt-30"><a className="btn reading-btn btn-black text-body-text" href="page-service-2.html">{content.fwmi_button_text}</a></div>
+            <div className="mt-30"><a className="btn reading-btn btn-black text-body-text" href={content.fwmi_button_url}>{content.fwmi_button_text}</a></div>
           </div>
         </div>
 

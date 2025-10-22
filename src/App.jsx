@@ -30,6 +30,7 @@ import TextSection from "./components/modulesComponents/TextSection";
 import FeedbackSection from "./components/modulesComponents/FeedbackSection";
 import ImageSection from "./components/modulesComponents/ImageSection";
 import ButtonSection from "./components/modulesComponents/ButtonSection";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 // DYNAMIC PAGE KOMPONENTİ - BU ƏSAS SƏHİFƏ KOMPONENTİDİR
 const DynamicPage = () => {
@@ -96,7 +97,11 @@ const PageRenderer = ({ pageData }) => {
   if (!pageData?.modules) return null;
 
   // Əgər main_image və cover_image null olarsa VƏ about səhifəsi deyilsə, breadcrumb banner göstər
-  const showBreadcrumbBanner = !pageData.main_image && !pageData.cover_image && pageData.slug !== "about" && pageData.slug !== "homepage";
+  const showBreadcrumbBanner =
+    !pageData.main_image &&
+    !pageData.cover_image &&
+    pageData.slug !== "about" &&
+    pageData.slug !== "homepage";
 
   const moduleComponents = {
     "List Section": ListSection,
@@ -116,13 +121,17 @@ const PageRenderer = ({ pageData }) => {
     Promotion: PromotionSection,
     "Full-Width Multiple Images Section": FullWidthMultipleImagesSection,
     Contact: ContactSection,
-    'Image' : ImageSection,
-    "Button" : ButtonSection
+    Image: ImageSection,
+    Button: ButtonSection,
   };
 
   return (
     <>
       {/* BREADCRUMB BANNER - main_image və cover_image null olduqda VƏ about səhifəsi deyilsə */}
+      <Helmet>
+        <title>{pageData.meta_title}</title>
+        <meta name="description" content={pageData.meta_description} />
+      </Helmet>
       {showBreadcrumbBanner && (
         <section className="section-box">
           <div className="banner-hero banner-breadcrums bg-5">
@@ -220,7 +229,15 @@ const DetailRenderer = ({ detailData, type }) => {
   }
 
   // Banner üçün məlumatları çıxarın
-  const { title, image, banner_image, main_image, description, published_at, date } = detailData;
+  const {
+    title,
+    image,
+    banner_image,
+    main_image,
+    description,
+    published_at,
+    date,
+  } = detailData;
   const bannerImage = banner_image || image;
 
   return (
@@ -279,7 +296,7 @@ const DetailRenderer = ({ detailData, type }) => {
           "Full-Width Multiple Images Section": FullWidthMultipleImagesSection,
           Contact: ContactSection,
           "Full-Width Text Section": FullWidthSection,
-          
+
           // PORTFOLIO DETAIL XÜSUSİ MODULLARI
           Text: TextSection,
           Image: ImageSection, // ✅ Image modulu üçün yeni komponent
@@ -288,7 +305,7 @@ const DetailRenderer = ({ detailData, type }) => {
         };
 
         const Component = moduleComponents[module.module_type];
-        
+
         if (!Component) {
           console.warn(`❌ Naməlum modul: ${module.module_type}`);
           return null;
@@ -314,42 +331,44 @@ const DetailRenderer = ({ detailData, type }) => {
 function App() {
   return (
     <div className="App">
-      <Header />
-      <main>
-        <Routes>
-          {/* Dinamik səhifələr */}
-          <Route path="/" element={<DynamicPage />} />
-          <Route path="/:slug" element={<DynamicPage />} />
+      <HelmetProvider>
+        <Header />
+        <main>
+          <Routes>
+            {/* Dinamik səhifələr */}
+            <Route path="/" element={<DynamicPage />} />
+            <Route path="/:slug" element={<DynamicPage />} />
 
-          {/* Detail səhifələr - API strukturuna uyğun */}
-          <Route
-            path="/services/:slug"
-            element={<DetailPage type="services" />}
+            {/* Detail səhifələr - API strukturuna uyğun */}
+            <Route
+              path="/services/:slug"
+              element={<DetailPage type="services" />}
+            />
+            <Route
+              path="/projects/:slug"
+              element={<DetailPage type="projects" />}
+            />
+            <Route path="/blogs/:slug" element={<DetailPage type="blogs" />} />
+            <Route
+              path="/industry/:slug"
+              element={<DetailPage type="industry" />}
+            />
+          </Routes>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
           />
-          <Route
-            path="/projects/:slug"
-            element={<DetailPage type="projects" />}
-          />
-          <Route path="/blogs/:slug" element={<DetailPage type="blogs" />} />
-          <Route
-            path="/industry/:slug"
-            element={<DetailPage type="industry" />}
-          />
-        </Routes>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </HelmetProvider>
     </div>
   );
 }

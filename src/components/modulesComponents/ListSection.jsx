@@ -37,22 +37,26 @@ const ListSection = ({ content }) => {
                   </div>
                 </div>
               ))
-            : 
-             content?.list?.map((list, index) => (
-              
-              <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
-              <div className="list-icons mt-40 hover-up h-100 d-flex flex-column align-items-stretch">
-                <div className={`item-icon ${index === content.list.length - 1 ? 'last-item-icon' : ''} flex-grow-1`}>
-                  <span className="icon-left">
-                    <i className={`${list.le_icon} icon-main`}></i>
-                  </span> 
-                  <h4 className="text-heading-4">{list.le_title}</h4>
-                  <p className="text-body-text color-gray-600 mt-15">
-                    {list.le_description}
-                  </p>
+            : content?.list?.map((list, index) => (
+                <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
+                  <div className="list-icons mt-40 hover-up h-100 d-flex flex-column align-items-stretch">
+                    <div
+                      className={`item-icon ${
+                        index === content.list.length - 1
+                          ? "last-item-icon"
+                          : ""
+                      } flex-grow-1`}
+                    >
+                      <span className="icon-left">
+                        <i className={`${list.le_icon} icon-main`}></i>
+                      </span>
+                      <h4 className="text-heading-4">{list.le_title}</h4>
+                      <p className="text-body-text color-gray-600 mt-15">
+                        {list.le_description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
               ))}
         </div>
       </div>
