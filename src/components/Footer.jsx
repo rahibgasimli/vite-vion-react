@@ -45,9 +45,9 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="col-lg-3 width-20 mb-30">
+        <div className="col-lg-3 width-20">
           <h4 className="text-heading-5"></h4>
-          <ul className="menu-footer mt-20">
+          <ul className="menu-footer mt-md-5 px-md-3">
             {secondPart.map((item) => (
               <li key={item.slug}>
                 <Link
@@ -115,7 +115,7 @@ const Footer = () => {
               );
             }
             return (
-              <div className="col-lg-3 width-20 mb-30" key={index}>
+              <div className="col-lg-3 width-20" key={index}>
                 <h4 className="text-heading-5">{section.title}</h4>
                 <ul className="menu-footer mt-20">
                   {section.children?.map((item) => (

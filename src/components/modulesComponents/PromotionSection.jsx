@@ -5,7 +5,7 @@ const PromotionSection = ({ content }) => {
   return (
 
     <section className="section-box">
-    <div className="container mt-90">
+    <div className="container">
       <div className="row align-items-center">
         <div className="col-lg-5 col-sm-12 block-img-we-do">
           <div className="inner-image"><img className="img-responsive" src={`https://vionadvisory.com/storage/${content?.promotion_image}`} alt="Vion"/></div>
