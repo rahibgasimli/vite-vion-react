@@ -44,7 +44,7 @@ const NewsSection = ({ content, data }) => {
                 <div className="grid-4-img">
                   <Link to={`/blogs/${card.slug}`}>
                     <img
-                      src={`https://vionadvisory.com/storage/${card.image}`}
+                      src={`/storage/${card.image}`}
                       alt="Vion"
                     />
                   </Link>

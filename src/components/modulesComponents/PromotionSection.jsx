@@ -8,7 +8,7 @@ const PromotionSection = ({ content }) => {
     <div className="container">
       <div className="row align-items-center">
         <div className="col-lg-5 col-sm-12 block-img-we-do">
-          <div className="inner-image"><img className="img-responsive" src={`https://vionadvisory.com/storage/${content?.promotion_image}`} alt="Vion"/></div>
+          <div className="inner-image"><img className="img-responsive" src={`/storage/${content?.promotion_image}`} alt="Vion"/></div>
         </div>
         <div className="col-lg-7 col-sm-12 block-we-do-2">
           <h3 className="text-heading-1 mt-30">{content?.promotion_title}</h3>

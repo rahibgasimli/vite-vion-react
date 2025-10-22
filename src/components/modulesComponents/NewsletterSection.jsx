@@ -19,7 +19,7 @@ const NewsletterSection = ({ content }) => {
                 </div>
               </div>
               <div className="col-lg-7 col-md-5 mt-30 mt-lg-0 mt-md-30 mt-sm-30 position-relative text-end">
-                <img className="img-responsive img-newsletter" src={`https://vionadvisory.com/storage/${content.newsletter_image}`} alt="Vion"/>
+                <img className="img-responsive img-newsletter" src={`/storage/${content.newsletter_image}`} alt="Vion"/>
               </div>
             </div>
           </div>

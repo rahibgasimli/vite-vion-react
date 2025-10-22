@@ -56,7 +56,7 @@ const SlidersSection = ({ content }) => {
                         <div className="col-lg-7">
                             <div className={`slide-container ${isAnimating ? 'animating' : ''}`}>
                                 <img 
-                                    src={`https://vionadvisory.com/storage/${currentSlide.image}`}
+                                    src={`/storage/${currentSlide.image}`}
                                     
                                     className="slide-image main-image"
                                     alt="Banner 1"
@@ -66,7 +66,7 @@ const SlidersSection = ({ content }) => {
                         <div className="col-lg-5 d-none d-lg-block">
                             <div className={`slide-container ${isAnimating ? 'animating' : ''}`}>
                                 <img 
-                                    src={`https://vionadvisory.com/storage/${nextSlide.slide_image}`}
+                                    src={`/storage/${nextSlide.slide_image}`}
                                     className="slide-image side-image"
                                     alt="Banner 2"
                                 />

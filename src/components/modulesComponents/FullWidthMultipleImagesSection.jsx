@@ -9,12 +9,12 @@ const FullWidthMultipleImagesSection = ({ content }) => {
             <div className="d-flex gap-3">
               <div className="col-6 d-flex flex-column gap-3">
                 {content.fwmi_images.map((image, index) => {
-                  return index !== 2 && <img className="img-responsive" key={index} src={`https://vionadvisory.com/storage/${image}`} alt="Vion" />
+                  return index !== 2 && <img className="img-responsive" key={index} src={`/storage/${image}`} alt="Vion" />
                 })}
               </div>
               <div className="col-6">
                 {content.fwmi_images.map((image, index) => {
-                  return index === 2 && <img className="img-responsive" style={{ height: "100%", paddingRight: 10 }} key={index} src={`https://vionadvisory.com/storage/${image}`} alt="Vion" />
+                  return index === 2 && <img className="img-responsive" style={{ height: "100%", paddingRight: 10 }} key={index} src={`/storage/${image}`} alt="Vion" />
                 })}
               </div>
 

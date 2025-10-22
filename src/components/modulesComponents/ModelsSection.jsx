@@ -68,7 +68,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
       <div className="card-grid-style-5 hover-up">
         <div className="grid-5-img mb-15">
           <img
-            src={`https://vionadvisory.com/storage/${member.image}`}
+            src={`/storage/${member.image}`}
             className="object-fit-cover"
             alt={member.name}
           />
@@ -114,7 +114,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
         <div className="grid-4-img">
           <Link to={`/blogs/${news.slug}`}>
             <img
-              src={`https://vionadvisory.com/storage/${news.image}`}
+              src={`/storage/${news.image}`}
               alt={news.title}
             />
           </Link>
@@ -156,7 +156,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
             <div className="inner-image">
               <img
                 className="img-responsive"
-                src={`https://vionadvisory.com/storage/${industry.image}`}
+                src={`/storage/${industry.image}`}
                 alt={industry.title}
               />
             </div>
@@ -195,7 +195,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           <div className="product-image crop-box">
             <img
               className="img-responsive"
-              src={`https://vionadvisory.com/storage/${portfolio.main_image}`}
+              src={`/storage/${portfolio.main_image}`}
               alt={portfolio.title}
             />
           </div>
@@ -229,7 +229,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
       <div className="grid-category-2">
         <div className="grid-category-image">
           <Link to={service.slug}>
-            <img src={`https://vionadvisory.com/storage/${service.image}`} />
+            <img src={`/storage/${service.image}`} />
           </Link>
         </div>
         <div className="service_container">
