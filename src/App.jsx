@@ -63,7 +63,6 @@ const DynamicPage = () => {
         const data = await fetchPageData(slug);
         setPageData(data);
       } catch (err) {
-        console.error("Səhifə məlumatları alınarkən xəta:", err);
         setError("Səhifə tapılmadı");
       } finally {
         setLoading(false);
@@ -158,7 +157,6 @@ const PageRenderer = ({ pageData }) => {
       {pageData.modules.map((module, index) => {
         const Component = moduleComponents[module.module_type];
         if (!Component) {
-          console.warn(`Naməlum modul: ${module.module_type}`);
           return null;
         }
 
@@ -192,7 +190,6 @@ const DetailPage = ({ type }) => {
         const data = await fetchDetailData(type, slug);
         setDetailData(data);
       } catch (err) {
-        console.error(`${type} məlumatları alınarkən xəta:`, err);
         setError(`${type} tapılmadı`);
       } finally {
         setLoading(false);
@@ -320,7 +317,6 @@ const DetailRenderer = ({ detailData, type }) => {
         const Component = moduleComponents[module.module_type];
 
         if (!Component) {
-          console.warn(`❌ Naməlum modul: ${module.module_type}`);
           return null;
         }
 

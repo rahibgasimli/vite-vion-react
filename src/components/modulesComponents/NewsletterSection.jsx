@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const NewsletterSection = ({ content }) => {
+  const [value, setValue] = useState("")
   return (
     <section className="section-box overflow-visible">
     <div className="container">
@@ -13,7 +14,7 @@ const NewsletterSection = ({ content }) => {
                 {content?.newsletter_title ? <h4 className="text-heading-2 mb-10 mt-10">{content?.newsletter_title}</h4> : null}
                 <div className="box-form-newsletter mt-60">
                   <form className="form-newsletter">
-                    <input className="input-newsletter" type="text" value="" placeholder={content?.newsletter_placeholder_text}></input>
+                    <input className="input-newsletter" type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder={content?.newsletter_placeholder_text}></input>
                     <button className="btn btn-send"></button>
                   </form>
                 </div>

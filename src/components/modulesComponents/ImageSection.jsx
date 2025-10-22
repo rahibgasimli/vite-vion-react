@@ -4,7 +4,6 @@ import React from 'react'
 const ImageSection = ({ content }) => {
   
   if (!content?.image) {
-    console.warn("❌ ImageSection: No image found in content:", content)
     return null
   }
 
@@ -19,7 +18,6 @@ const ImageSection = ({ content }) => {
           src={imageUrl} 
           alt="Agon"
           onError={(e) => {
-            console.error("❌ Image failed to load:", imageUrl)
             e.target.style.display = 'none'
           }}
         />
