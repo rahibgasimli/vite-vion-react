@@ -15,7 +15,7 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
 
   return (
     <section className="section-box">
-      <div className="container mt-100">
+      <div className="mt-100">
         {/* Anchor tab-lar */}
         {has_anchor_group && (
           <div className="text-center mb-60">
