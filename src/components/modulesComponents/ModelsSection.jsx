@@ -1,46 +1,72 @@
 import { Link } from "react-router-dom";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "../icons";
 import FullWidthMultipleImagesSection from "./FullWidthMultipleImagesSection"; // Bu importu əlavə edin
+import { useState, useEffect } from "react";
 
 const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
   const { model_type, has_anchor_group } = content;
 
   // Industry model_type üçün render funksiyası
   const renderIndustryContent = () => {
-    if (model_type !== "Industry") return null;
+  if (model_type !== "Industry") return null;
 
-    const industryItems = [];
-    
-    data.forEach((item, index) => {
-      // Əgər bu bir injected moduldursa
-      if (item.injected_module) {
-        industryItems.push(
-          <FullWidthMultipleImagesSection
-            key={`injected-${index}`}
-            content={item.content}
-            data={item.data}
-          />
-        );
-      } else {
-        // Normal industry item
-        industryItems.push(
-          <IndustryItem
-            key={item.id || index}
-            industry={item}
-            hasAnchor={has_anchor_group}
-            index={index}
-          />
-        );
-      }
-    });
+  // Yalnız injected olmayan industry-ləri anchor üçün götür
+  const industryItems = data.filter(item => !item.injected_module);
 
-    return <div className="industry-list">{industryItems}</div>;
-  };
+  return (
+    <section className="section-box">
+      <div className="container mt-100">
+        {/* Anchor tab-lar */}
+        {has_anchor_group && (
+          <div className="text-center mb-60">
+            <ul className="nav" role="tablist">
+              {industryItems.map((item, index) => (
+                <li key={index}>
+                  <a
+                    className="btn btn-default btn-bd-green-hover btn-select"
+                    href={`#${item.slug}`}
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Industry contentləri */}
+        <div className="industry-list">
+          {data.map((item, index) => {
+            if (item.injected_module) {
+              return (
+                <FullWidthMultipleImagesSection
+                  key={`injected-${index}`}
+                  content={item.content}
+                  data={item.data}
+                />
+              );
+            } else {
+              return (
+                <IndustryItem
+                  key={item.id || index}
+                  industry={item}
+                  hasAnchor={has_anchor_group}
+                  index={index}
+                />
+              );
+            }
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 
   const TeamMember = ({ member }) => (
     <div className="col-lg-3 col-md-6 col-sm-6">
       <div className="card-grid-style-5 hover-up">
-        <div className="grid-5-img mb-15">  
+        <div className="grid-5-img mb-15">
           <img
             src={`https://vionadvisory.com/storage/${member.image}`}
             className="object-fit-cover"
@@ -55,9 +81,21 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           {member.bio}
         </p>
         <div className="social-bottom">
-          {member.instagram_url && <a href={member.instagram_url} target="_blank"><InstagramIcon /></a>}
-          {member.linkedin_url && <a href={member.linkedin_url} target="_blank"><LinkedinIcon /></a>}
-          {member.facebook_url && <a href={member.facebook_url} target="_blank"><FacebookIcon /></a>}
+          {member.instagram_url && (
+            <a href={member.instagram_url} target="_blank">
+              <InstagramIcon />
+            </a>
+          )}
+          {member.linkedin_url && (
+            <a href={member.linkedin_url} target="_blank">
+              <LinkedinIcon />
+            </a>
+          )}
+          {member.facebook_url && (
+            <a href={member.facebook_url} target="_blank">
+              <FacebookIcon />
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -87,6 +125,21 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
 
   const IndustryItem = ({ industry, hasAnchor, index }) => {
     const isEven = index % 2 === 0;
+    const [aktivTab, setAktivTab] = useState(0);
+
+    const tabClick = (index) => {
+      setAktivTab(index);
+    };
+
+    useEffect(() => {
+      const hash = window.location.hash.replace("#", "");
+      if (hasAnchor && hash === industry.slug) {
+        const el = document.getElementById(industry.slug);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, [hasAnchor, industry.slug]);
 
     return (
       <div className="container mt-90" key={industry.id || index}>
@@ -111,8 +164,8 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
 
           {/* Mətn həmişə sağda, amma order ilə dəyişir */}
           <div
-            className={`col-lg-7 col-sm-12 block-we-do-2 ${
-              isEven ? "order-lg-2" : "order-lg-1"
+            className={`col-lg-7 col-sm-12 ${
+              isEven ? "order-lg-2 block-we-do-2" : "order-lg-1 block-we-do-2-right"
             }`}
           >
             <h3 className="text-heading-1 mt-30">{industry.title}</h3>
@@ -158,7 +211,10 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
           </div>
           <div className="d-flex mt-30">
             <div className="button-add text-md-start">
-              <Link className="btn btn-explorer" to={`/projects/${portfolio.slug}`}>
+              <Link
+                className="btn btn-explorer"
+                to={`/projects/${portfolio.slug}`}
+              >
                 Explore
               </Link>
             </div>
@@ -176,12 +232,18 @@ const ModelsSection = ({ data, content, pageTitle, pageDescription }) => {
             <img src={`https://vionadvisory.com/storage/${service.image}`} />
           </Link>
         </div>
-        <Link className="text-heading-5 color-gray-900 service_title" to={service.slug}>
-          {service.title}
-        </Link>
-        <div className="category-info-bottom">
-          <div className="link-readmore">
-            <Link to={service.slug}>READ MORE</Link>
+        <div className="service_container">
+          <Link className="text-heading-5 color-gray-900" to={service.slug}>
+            {service.title}
+          </Link>
+          <div className="grey_line"></div>
+          <Link className="text-heading-6 color-gray-900" to={service.slug}>
+            {service.short_description}
+          </Link>
+          <div className="category-info-bottom">
+            <div className="link-readmore">
+              <Link to={service.slug}>READ MORE</Link>
+            </div>
           </div>
         </div>
       </div>

@@ -383,6 +383,7 @@ a {
 
 .img-responsive {
   max-width: 100%;
+  border-radius: 20px;
 }
 
 .text-body-lead {
@@ -2719,9 +2720,16 @@ label {
   color: #bfd1ff !important;
 }
 
-.service_title {
-  border-bottom: 1px solid #e4e7ec;
-  padding-bottom: 30px;
+.grey_line {
+  width: 100%;
+  height: 1px;
+  background-color: #e4e7ec;
+}
+
+.service_container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .card-list-style-1 {
@@ -6764,6 +6772,10 @@ label {
   padding-left: 80px;
 }
 
+.block-we-do-2-right {
+  padding-right: 80px;
+}
+
 .block-img-we-do {
   position: relative;
 }
@@ -9456,6 +9468,9 @@ input.qty-val {
   }
   .block-we-do-2 {
     padding-left: 15px;
+  }
+  .block-we-do-2-right {
+    padding-right: 15px;
   }
   .box-square {
     height: auto;
