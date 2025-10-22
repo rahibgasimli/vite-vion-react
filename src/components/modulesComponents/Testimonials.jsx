@@ -19,7 +19,7 @@ const Testimonials = ({ content }) => {
                   <div className="card-grid-style-2 card-square hover-up mb-20">
                     <p className="text-body-text color-gray-600 text-comment">{card.text}</p>
                     <div className="box-img-user">
-                      <div className="img-user img-user-round"><img src={`https://vionadvisory.com/storage/${card.image}`} alt="Vion" /></div>
+                      <div className="img-user img-user-round"><img src={`/storage/${card.image}`} alt="Vion" /></div>
                       <h4 className="text-body-lead color-gray-900 mb-5">{card.name}</h4>
                       <p className="text-body-text-md">{card.workplace}</p>
                     </div>

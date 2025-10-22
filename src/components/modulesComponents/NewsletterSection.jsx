@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const NewsletterSection = ({ content }) => {
+  const [value, setValue] = useState("")
   return (
     <section className="section-box overflow-visible">
     <div className="container">
@@ -13,13 +14,13 @@ const NewsletterSection = ({ content }) => {
                 {content?.newsletter_title ? <h4 className="text-heading-2 mb-10 mt-10">{content?.newsletter_title}</h4> : null}
                 <div className="box-form-newsletter mt-60">
                   <form className="form-newsletter">
-                    <input className="input-newsletter" type="text" value="" placeholder={content?.newsletter_placeholder_text}></input>
+                    <input className="input-newsletter" type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder={content?.newsletter_placeholder_text}></input>
                     <button className="btn btn-send"></button>
                   </form>
                 </div>
               </div>
               <div className="col-lg-7 col-md-5 mt-30 mt-lg-0 mt-md-30 mt-sm-30 position-relative text-end">
-                <img className="img-responsive img-newsletter" src={`https://vionadvisory.com/storage/${content.newsletter_image}`} alt="Vion"/>
+                <img className="img-responsive img-newsletter" src={`/storage/${content.newsletter_image}`} alt="Vion"/>
               </div>
             </div>
           </div>
