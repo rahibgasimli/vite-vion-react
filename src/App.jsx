@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { fetchPageData, fetchDetailData, fetchData } from "./assets/utils/getData";
+import {
+  fetchPageData,
+  fetchDetailData,
+  fetchData,
+} from "./assets/utils/getData";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/css/style.css";
@@ -45,8 +49,8 @@ const DynamicPage = () => {
   useEffect(() => {
     fetchData("en/app-data").then((data) => {
       setAppData(data);
-    })
-  }, [])
+    });
+  }, []);
 
   useEffect(() => {
     window.scrollTo({
@@ -137,6 +141,7 @@ const PageRenderer = ({ pageData }) => {
       <Helmet>
         <title>{pageData.meta_title}</title>
         <meta name="description" content={pageData.meta_description} />
+        <meta name="keywords" content={pageData.meta_keywords} />
       </Helmet>
       {showBreadcrumbBanner && (
         <section className="section-box">
@@ -204,8 +209,8 @@ const DetailPage = ({ type }) => {
   useEffect(() => {
     fetchData("en/app-data").then((data) => {
       setAppData(data);
-    })
-  }, [])
+    });
+  }, []);
 
   if (loading) {
     return (
@@ -253,6 +258,11 @@ const DetailRenderer = ({ detailData, type }) => {
 
   return (
     <>
+      <Helmet>
+        <title>{detailData.meta_title}</title>
+        <meta name="description" content={detailData.meta_description} />
+        <meta name="keywords" content={detailData.meta_keywords} />
+      </Helmet>
       {/* BANNER */}
       {title && (
         <section className="section-box">
@@ -287,7 +297,6 @@ const DetailRenderer = ({ detailData, type }) => {
 
       {/* DİGƏR MODULLAR */}
       {detailData.modules.map((module, index) => {
-
         const moduleComponents = {
           // ƏSAS MODULLAR
           "List Section": ListSection,
